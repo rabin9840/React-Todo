@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const TodoTasks = () => {
     const [isActive, setIsActive] = useState(true);
@@ -25,13 +25,21 @@ const TodoTasks = () => {
             </div>
 
             
-            <div className="task">
+            {/* <div className="task">
                 <h2>Is Active</h2>
                 <input
                     type="checkbox"
                     checked={isActive}
                     onChange={(e) => setIsActive(e.target.checked)}
                 />
+            </div> */}
+
+            <div className="task">
+                <h2>Is Active</h2>
+                <select value={isActive} onChange={(e) => { setIsActive(e.target.value) }}>
+                <option value="true">True</option>
+                <option value="False">False</option>
+                </select>
             </div>
 
             <div className="task">
