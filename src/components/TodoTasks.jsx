@@ -1,30 +1,43 @@
 import { useState } from 'react';
+import axios from 'axios';
+import moment from 'moment';
 
 const TodoTasks = () => {
-    const [task, setTask] = useState({
-        title: '',
+    const initialTodoState = {
+         title: '',
         description: '',
         dueDate: '',
         isActive: true,
         status: 'todo'
-    });
+    }
+    const [task, setTask] = useState(initialTodoState);
 
-    const [todoList, setTodoList]= useState([]);
+    // const [todoList, setTodoList]= useState([]);
 
     const handleAddTask = () => {
-        console.log(task); // Object containing entered data
-        setTodoList((prevTodoList) => [...prevTodoList, task]);
-        console.log(todoList); // Array containing all tasks
+        const formattedTask = {
+            ...task,
+            dueDate:moment(task.dueDate).format('M/D/YYYY')
+            // new Date(task.dueDate).toISOString()
+          };
+        console.log(formattedTask); // Object containing entered data
+  
+        axios.post('http://localhost:3000/todos', formattedTask)
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+
+
+
+        // setTodoList((prevTodoList) => [...prevTodoList, task]);
+        // console.log(todoList); // Array containing all tasks
 
         // Resetting the task state to initial value
-        setTask({
-            id: task.id + 1,
-            title: '',
-            description: '',
-            dueDate: '',
-            isActive: true,
-            status: 'todo'
-        });
+        setTask(initialTodoState);
     };
 
     const handleInputChange = (e) => {
