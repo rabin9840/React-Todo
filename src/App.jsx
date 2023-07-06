@@ -1,13 +1,14 @@
 
 import './App.css'
 import TodoTasks from './components/TodoTasks'
-import TodoItems from './components/TodoItems'
+// import TodoItemsList from './components/TodoItems'
+import TodoItemsList from './components/TodoItemsList'
 
 function App() {
   return (
     <>
       <TodoTasks />
-      <TodoItems />
+      <TodoItemsList />
     </>
   )
 }
