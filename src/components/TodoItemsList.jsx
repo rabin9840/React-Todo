@@ -1,27 +1,45 @@
 // import todos from "../todos";
 import { useState } from 'react';
 import axios from 'axios';
-import Modal from 'react-modal';
 import TodoItem from './TodoItem';
 import DeleteModal from './Modals/DeleteModal';
+import EditModal from './Modals/EditModal';
 
 const TodoItems = () => {
   const [todos, setTodos] = useState([]);
 
-  const [deleteTodo, setDeleteTodo] = useState('');
+  const [deleteTodoId, setDeleteTodoId] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [editTodoId, setEditTodoId] = useState('');
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  const[editTodo,setEditTodo]=useState({});
 
   const username = "12345678";
   const password = "12345678";
 
   const openDeleteModal = (todoId) => {
-    setDeleteTodo(todoId);
+    setDeleteTodoId(todoId);
     setIsModalOpen(true);
   }
 
   const closeDeleteModal = () => {
     setIsModalOpen(false);
   }
+
+  const openEditModal = (todoId, todo) => {
+    console.log(todo);
+    console.log(todoId);
+
+    setEditTodoId(todoId);
+    setEditTodo(todo);
+    setIsEditModalOpen(true);
+  };
+
+  const closeEditModal = () => {  
+    setIsEditModalOpen(false);
+  };
 
   const handleGetData = () => {
     axios.get("http://localhost:3000/todos", {
@@ -41,7 +59,7 @@ const TodoItems = () => {
       });
   };
 
-  // const handleDeletetodo = (todoId) => {
+  // const handleDeletetodoId = (todoId) => {
   //   axios.delete(`http://localhost:3000/todos/${todoId}`, {
   //     headers: {
   //       Authorization: `Basic ${btoa(`${username}:${password}`)}`,
@@ -58,20 +76,42 @@ const TodoItems = () => {
   // };
 
   const handleDelete = () => {
-    axios.delete(`http://localhost:3000/todos/${deleteTodo}`, {
+    axios.delete(`http://localhost:3000/todos/${deleteTodoId}`, {
       headers: {
         Authorization: `Basic ${btoa(`${username}:${password}`)}`,
       },
     })
       .then(response => {
         console.log(response.data);
-        setTodos(prevtodos => prevtodos.filter(todo => todo._id !== deleteTodo));
+        setTodos(prevtodos => prevtodos.filter(todo => todo._id !== deleteTodoId));
         closeDeleteModal();
       })
       .catch(error => {
         console.log(error);
       });
   };
+
+
+  const handleEdit = (updatedTodo) => {
+    console.log(editTodoId);
+    console.log(updatedTodo);
+    axios.put(`http://localhost:3000/todos/${editTodoId}`, updatedTodo, {
+      headers: {
+        Authorization: `Basic ${btoa(`${username}:${password}`)}`,
+      },
+    })
+      .then(response => {
+        console.log(response.data);
+        // Update the todo in the state
+        setTodos(prevTodos => prevTodos.map(todo => todo._id === editTodoId ? response.data.data : todo));
+        closeEditModal();
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+  
+  
 
   return (
     <div className="todo-items">
@@ -100,12 +140,12 @@ const TodoItems = () => {
                       //     <td>{todo.status}</td>
                       //     <td>
                       //         <button className="task-action-button">Edit</button>
-                      //         {/* <button className="todo-action-button" onClick={()=>handleDeletetodo(todo._id)} >Delete</button> */}
+                      //         {/* <button className="todo-action-button" onClick={()=>handleDeletetodoId(todo._id)} >Delete</button> */}
                       //         <button className="task-action-button" onClick={()=>openDeleteModal(todo._id)} >Delete</button>
                           
                       // </td>
                       // </tr>
-                    <TodoItem key={index} todo={todo} openDeleteModal={openDeleteModal} />
+                    <TodoItem key={index} todo={todo} openDeleteModal={openDeleteModal} openEditModal={openEditModal} />
                   ))}
                   
         </tbody>
@@ -122,6 +162,9 @@ const TodoItems = () => {
         <button onClick={handleDelete}>Delete</button>
         <button onClick={closeDeleteModal}>Cancel</button>
       </Modal> */}
+      <EditModal isEditModalOpen={isEditModalOpen} closeEditModal={closeEditModal} handleEdit={handleEdit} initialTodo={editTodo} />
+
+      
     </div>
   );
 };

@@ -1,4 +1,6 @@
 import Modal from 'react-modal';
+Modal.setAppElement('#root');
+
 
 const DeleteModal = ({ isModalOpen, handleDelete, closeDeleteModal }) => { 
     return (
