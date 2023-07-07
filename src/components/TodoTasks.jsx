@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 
-const TodoTasks = () => {
+const TodoTasks = ({closeCreateModal}) => {
     const initialTodoState = {
          title: '',
         description: '',
@@ -46,6 +46,10 @@ const TodoTasks = () => {
         const { name, value } = e.target;
         setTask((prevTask) => ({ ...prevTask, [name]: value }));
     };
+
+    const handleCloseModal = () => {
+        closeCreateModal();
+    }
 
     return (
         <div className="todo-tasks">
@@ -109,7 +113,9 @@ const TodoTasks = () => {
                 <button className="task-action-button" onClick={handleAddTask}>
                     Add to Task List
                 </button>
-                <button className="task-action-button">Clear List</button>
+                <button className="task-action-button" onClick={handleCloseModal}>
+                    Close
+                </button>
             </div>
         </div>
     );
