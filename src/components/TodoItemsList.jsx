@@ -53,7 +53,11 @@ const TodoItems = () => {
       .then(response => {
         // Handle the response
         console.log(response.data.data);
+        // const todos = response.data.data;
+
+        // apply sorting
         const todos = response.data.data;
+        todos.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
         setTodos(todos);
       })
       .catch(error => {
