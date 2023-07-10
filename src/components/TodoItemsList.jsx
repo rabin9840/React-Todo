@@ -62,21 +62,6 @@ const TodoItems = () => {
       });
   };
 
-  // const handleDeletetodoId = (todoId) => {
-  //   axios.delete(`http://localhost:3000/todos/${todoId}`, {
-  //     headers: {
-  //       Authorization: `Basic ${btoa(`${username}:${password}`)}`,
-  //     },
-  //   })
-  //     .then(response => {
-  //       console.log(response.data);
-  //       setTodos(prevtodos => prevtodos.filter(todo => todo._id !== todoId));
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     }
-  //     );
-  // };
 
   const handleDelete = () => {
     axios.delete(`http://localhost:3000/todos/${deleteTodoId}`, {
@@ -120,7 +105,7 @@ const TodoItems = () => {
     <div className="todo-items">
       <h1>Your todos</h1>
       <Button variant="primary" onClick={handleGetData}>Get Todos</Button>
-<Row className="card-container">
+      <Row className="card-container">
         {todos.map((todo, index) => (
           <Col key={index} md={4} sm={6} xs={12}>
             <Card className="todo-card">

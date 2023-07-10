@@ -103,3 +103,47 @@ h1 {
   font-size: 24px;
   margin-bottom: 20px;
 }
+
+
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* gap: 20px; */
+
+}
+
+.todo-card {
+  width: 300px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  background-image: linear-gradient(rgb(181, 212, 228), rgb(238, 216, 216)) !important;
+  margin: 10px;
+}
+
+.todo-title {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.todo-description {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.due-date {
+  font-weight: bold;
+}
+
+.todo-info {
+  font-weight: bold;
+}
+
+.card-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
