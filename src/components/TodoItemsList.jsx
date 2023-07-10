@@ -131,20 +131,6 @@ const TodoItems = () => {
         </thead>
               <tbody>
                   {todos.map((todo, index) => (
-                      // <tr key={index}>
-                      //     <td>{todo._id}</td>
-                      //     <td>{todo.title}</td>
-                      //     <td>{todo.description}</td>
-                      //     <td>{todo.dueDate.toString()}</td>
-                      //     <td>{todo.isActive.toString()}</td>
-                      //     <td>{todo.status}</td>
-                      //     <td>
-                      //         <button className="task-action-button">Edit</button>
-                      //         {/* <button className="todo-action-button" onClick={()=>handleDeletetodoId(todo._id)} >Delete</button> */}
-                      //         <button className="task-action-button" onClick={()=>openDeleteModal(todo._id)} >Delete</button>
-                          
-                      // </td>
-                      // </tr>
                     <TodoItem key={index} todo={todo} openDeleteModal={openDeleteModal} openEditModal={openEditModal} />
                   ))}
                   

@@ -15,14 +15,14 @@ const TodoTasks = ({closeCreateModal}) => {
     // const [todoList, setTodoList]= useState([]);
 
     const handleAddTask = () => {
-        const formattedTask = {
-            ...task,
-            dueDate:moment(task.dueDate).format('M/D/YYYY')
-            // new Date(task.dueDate).toISOString()
-          };
-        console.log(formattedTask); // Object containing entered data
-  
-        axios.post('http://localhost:3000/todos', formattedTask)
+        console.log(task.dueDate);
+        // const formattedTask = {
+        //     ...task,
+        //     dueDate:moment(task.dueDate).format('M/D/YYYY')
+        //     // new Date(task.dueDate).toISOString()
+        //   };
+        // console.log(formattedTask); // Object containing all task details
+        axios.post('http://localhost:3000/todos', task)
             .then(response => {
                 console.log(response.data);
             })
@@ -111,7 +111,7 @@ const TodoTasks = ({closeCreateModal}) => {
 
             <div className="task-action">
                 <button className="task-action-button" onClick={handleAddTask}>
-                    Add to Task List
+                    Add Todo
                 </button>
                 <button className="task-action-button" onClick={handleCloseModal}>
                     Close

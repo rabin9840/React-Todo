@@ -21,7 +21,13 @@ const closeCreateModal = () => {
   
   return (
     <>
-      <button onClick={openCreateModal}>Open Create Task</button>
+      <div className="app-container">
+        <h1 className="app-heading">Todos</h1>
+        <button className="add-button" onClick={openCreateModal}>
+          +
+        </button>
+
+      </div>
       <CreateModal closeCreateModal={closeCreateModal} isCreateModalOpen={isCreateModalOpen} />
       <TodoItemsList />
     </>
