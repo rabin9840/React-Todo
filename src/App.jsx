@@ -7,6 +7,9 @@ import TodoItemsList from './components/TodoItemsList'
 import { useState } from 'react';
 // import Modal from 'react-modal';
 
+import { Container, Row, Col, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -21,13 +24,25 @@ const closeCreateModal = () => {
   
   return (
     <>
-      <div className="app-container">
+      {/* <div className="app-container">
         <h1 className="app-heading">Todos</h1>
         <button className="add-button" onClick={openCreateModal}>
           +
         </button>
 
-      </div>
+      </div> */}
+    <Container fluid className="d-flex align-items-center justify-content-center">
+      <Row className="justify-content-center">
+        <Col xs={12} md={6}>
+          <div className="app-container">
+            <h1 className="app-heading">Todos</h1>
+            <Button className="add-button" onClick={openCreateModal}>
+              +
+            </Button>
+          </div>
+        </Col>
+      </Row>
+    </Container>
       <CreateModal closeCreateModal={closeCreateModal} isCreateModalOpen={isCreateModalOpen} />
       <TodoItemsList />
     </>
