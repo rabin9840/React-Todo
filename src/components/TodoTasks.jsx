@@ -1,8 +1,12 @@
 import { useState } from 'react';
-import axios from 'axios';
-import moment from 'moment';
+import {useDispatch} from 'react-redux';
+import { addTodo } from '../actions/todos/addTodo';
 
-const TodoTasks = ({closeCreateModal}) => {
+
+const TodoTasks = ({ closeCreateModal }) => {
+    const dispatch = useDispatch();
+    // const todos = useSelector((state) => state.todos.todos);
+
     const initialTodoState = {
          title: '',
         description: '',
@@ -15,28 +19,7 @@ const TodoTasks = ({closeCreateModal}) => {
     // const [todoList, setTodoList]= useState([]);
 
     const handleAddTask = () => {
-        console.log(task.dueDate);
-        // const formattedTask = {
-        //     ...task,
-        //     dueDate:moment(task.dueDate).format('M/D/YYYY')
-        //     // new Date(task.dueDate).toISOString()
-        //   };
-        // console.log(formattedTask); // Object containing all task details
-        axios.post('http://localhost:3000/todos', task)
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-
-
-
-
-        // setTodoList((prevTodoList) => [...prevTodoList, task]);
-        // console.log(todoList); // Array containing all tasks
-
-        // Resetting the task state to initial value
+        dispatch(addTodo(task));
         setTask(initialTodoState);
     };
 
