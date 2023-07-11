@@ -21,6 +21,11 @@ const todosReducer = (state = initialState, action) => {
                 ...state,
                 todos: state.todos.filter((todo) => todo._id !== action.payload),
             };
+        case actionTypes.UPDATE_TODO:
+            return {
+                ...state,
+                todos: state.todos.map((todo) => todo._id === action.payload._id ? action.payload : todo),
+            };
         default:
             return state;
     }

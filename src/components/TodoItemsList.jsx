@@ -8,8 +8,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTodos } from '../actions/todos/fetchTodos';
 import { deleteTodo } from '../actions/todos/deleteTodo';
+import { updateTodo } from '../actions/todos/updateTodo';
 
- 
 
 const TodoItems = () => {
   const dispatch = useDispatch();
@@ -61,22 +61,7 @@ const TodoItems = () => {
 
 
   const handleEdit = (updatedTodo) => {
-    console.log(editTodoId);
-    console.log(updatedTodo);
-    axios.put(`http://localhost:3000/todos/${editTodoId}`, updatedTodo, {
-      headers: {
-        Authorization: `Basic ${btoa(`${username}:${password}`)}`,
-      },
-    })
-      .then(response => {
-        console.log(response.data);
-        // Update the todo in the state
-        // setTodos(prevTodos => prevTodos.map(todo => todo._id === editTodoId ? response.data.data : todo));
-        closeEditModal();
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    dispatch(updateTodo(editTodoId, updatedTodo, username, password));
   };
   
   
