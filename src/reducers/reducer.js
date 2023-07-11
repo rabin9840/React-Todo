@@ -11,6 +11,11 @@ const todosReducer = (state = initialState, action) => {
                 ...state,
                 todos: state.todos.filter((todo) => todo._id !== action.payload),
             };
+         case actionTypes.FETCH_TODOS:
+            return {
+                ...state,
+                todos: action.payload,
+            };
         default:
             return state;
     }

@@ -1,15 +1,18 @@
 // import todos from "../todos";
 import { useState } from 'react';
 import axios from 'axios';
-import TodoItem from './TodoItem';
 import DeleteModal from './Modals/DeleteModal';
 import EditModal from './Modals/EditModal';
-import { Table, Button, Card, Col, Row } from 'react-bootstrap';
+import {  Button, Card, Col, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchTodos } from '../actions/todos/fetchTodos';
+
  
 
 const TodoItems = () => {
-  const [todos, setTodos] = useState([]);
+  const dispatch = useDispatch();
+  const todos = useSelector((state) => state.todos.todos);
 
   const [deleteTodoId, setDeleteTodoId] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -45,25 +48,7 @@ const TodoItems = () => {
   };
 
   const handleGetData = () => {
-    axios.get("http://localhost:3000/todos", {
-      headers: {
-        Authorization: `Basic ${btoa(`${username}:${password}`)}`,
-      },
-    })
-      .then(response => {
-        // Handle the response
-        console.log(response.data.data);
-        // const todos = response.data.data;
-
-        // apply sorting
-        const todos = response.data.data;
-        todos.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
-        setTodos(todos);
-      })
-      .catch(error => {
-        // Handle errors
-        console.log(error);
-      });
+    dispatch(fetchTodos(username, password));
   };
 
 
@@ -75,7 +60,7 @@ const TodoItems = () => {
     })
       .then(response => {
         console.log(response.data);
-        setTodos(prevtodos => prevtodos.filter(todo => todo._id !== deleteTodoId));
+        // setTodos(prevtodos => prevtodos.filter(todo => todo._id !== deleteTodoId));
         closeDeleteModal();
       })
       .catch(error => {
@@ -95,7 +80,7 @@ const TodoItems = () => {
       .then(response => {
         console.log(response.data);
         // Update the todo in the state
-        setTodos(prevTodos => prevTodos.map(todo => todo._id === editTodoId ? response.data.data : todo));
+        // setTodos(prevTodos => prevTodos.map(todo => todo._id === editTodoId ? response.data.data : todo));
         closeEditModal();
       })
       .catch(error => {
