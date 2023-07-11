@@ -7,6 +7,7 @@ import {  Button, Card, Col, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTodos } from '../actions/todos/fetchTodos';
+import { deleteTodo } from '../actions/todos/deleteTodo';
 
  
 
@@ -52,20 +53,10 @@ const TodoItems = () => {
   };
 
 
+
   const handleDelete = () => {
-    axios.delete(`http://localhost:3000/todos/${deleteTodoId}`, {
-      headers: {
-        Authorization: `Basic ${btoa(`${username}:${password}`)}`,
-      },
-    })
-      .then(response => {
-        console.log(response.data);
-        // setTodos(prevtodos => prevtodos.filter(todo => todo._id !== deleteTodoId));
-        closeDeleteModal();
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    dispatch(deleteTodo(deleteTodoId, username, password));
+    closeDeleteModal();
   };
 
 
