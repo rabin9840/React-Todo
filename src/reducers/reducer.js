@@ -9,7 +9,7 @@ const todosReducer = (state = initialState, action) => {
         case actionTypes.ADD_TODO:
             return {
                 ...state,
-                todos: state.todos.filter((todo) => todo._id !== action.payload),
+                todos: [...state.todos, action.payload],
             };
          case actionTypes.FETCH_TODOS:
             return {
