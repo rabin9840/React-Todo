@@ -1,6 +1,5 @@
-// import todos from "../todos";
+
 import { useState } from 'react';
-import axios from 'axios';
 import DeleteModal from './Modals/DeleteModal';
 import EditModal from './Modals/EditModal';
 import {  Button, Card, Col, Row } from 'react-bootstrap';

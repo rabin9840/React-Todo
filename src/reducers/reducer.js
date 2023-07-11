@@ -26,6 +26,11 @@ const todosReducer = (state = initialState, action) => {
                 ...state,
                 todos: state.todos.map((todo) => todo._id === action.payload._id ? action.payload : todo),
             };
+        case actionTypes.SORT_TODOS:
+            return {
+                ...state,
+                todos:[...state.todos].sort((a,b)=>new Date(a.dueDate)- new Date(b.dueDate)),
+            }
         default:
             return state;
     }
