@@ -19,7 +19,7 @@ export const deleteTodo = (todoId, username, password) => {
         }
         catch (error) {
             console.log(error);
-            
+
         }
     }
 }

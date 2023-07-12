@@ -1,7 +1,7 @@
 import { actionTypes } from "../actions/actionTypes";
 
-const initialState={
-    todos:[],
+const initialState = {
+    todos: [],
 };
 
 const todosReducer = (state = initialState, action) => {
@@ -11,7 +11,7 @@ const todosReducer = (state = initialState, action) => {
                 ...state,
                 todos: [...state.todos, action.payload],
             };
-         case actionTypes.FETCH_TODOS:
+        case actionTypes.FETCH_TODOS:
             return {
                 ...state,
                 todos: action.payload,
@@ -29,7 +29,7 @@ const todosReducer = (state = initialState, action) => {
         case actionTypes.SORT_TODOS:
             return {
                 ...state,
-                todos:[...state.todos].sort((a,b)=>new Date(a.dueDate)- new Date(b.dueDate)),
+                todos: [...state.todos].sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate)),
             }
         default:
             return state;
