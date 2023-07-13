@@ -1,12 +1,11 @@
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTodo } from "../actions/todos/addTodo";
+import { Form, Button, Dropdown } from "react-bootstrap";
 import { useFormik } from "formik";
 import todoSchema from "../validation/todoSchema";
 
 const TodoTasks = ({ closeCreateModal }) => {
 	const dispatch = useDispatch();
-	// const todos = useSelector((state) => state.todos.todos);
 
 	const initialTodoState = {
 		title: "",
@@ -15,15 +14,6 @@ const TodoTasks = ({ closeCreateModal }) => {
 		isActive: true,
 		status: "todo",
 	};
-	// const formik = useFormik({
-	// 	initialValues: initialTodoState,
-	// 	validationSchema: todoSchema,
-	// 	onSubmit: ({ resetForm }) => {
-	// 		console.log(formik.values);
-	// 		dispatch(addTodo(formik.values));
-	// 		resetForm();
-	// 	},
-	// });
 
 	const formik = useFormik({
 		initialValues: initialTodoState,
@@ -35,79 +25,129 @@ const TodoTasks = ({ closeCreateModal }) => {
 		},
 	});
 
-	// const [todoList, setTodoList]= useState([]);
-
-	// const handleAddTask = () => {
-	//     dispatch(addTodo(task));
-	//     setTask(initialTodoState);
-	// };
-
-	// const handleInputChange = (e) => {
-	// 	console.log(e.target);
-	// 	console.log(e.target.name, e.target.value);
-	// 	const { name, value } = e.target;
-	// 	setTask((prevTask) => ({ ...prevTask, [name]: value }));
-	// };
-
 	const handleCloseModal = () => {
 		closeCreateModal();
 	};
 
 	return (
 		<div className='todo-tasks'>
-			<form onSubmit={formik.handleSubmit}>
-				<div className='task'>
-					<h2>Title</h2>
-					<input
+			<Form onSubmit={formik.handleSubmit}>
+				<Form.Group controlId='title'>
+					<Form.Label>Title</Form.Label>
+					<Form.Control
 						type='text'
 						name='title'
 						placeholder='Task Title'
-						// value={task.title}
 						value={formik.values.title}
-						// onChange={handleInputChange}
 						onChange={formik.handleChange}
 						onBlur={formik.handleBlur}
+						isInvalid={formik.touched.title && formik.errors.title}
 					/>
 					{formik.touched.title && formik.errors.title && (
-						<div className='error-message'>{formik.errors.title}</div>
+						<Form.Control.Feedback type='invalid'>
+							{formik.errors.title}
+						</Form.Control.Feedback>
 					)}
-				</div>
-				<div className='task'>
-					<h2>Task Description</h2>
-					<input
+				</Form.Group>
+
+				<Form.Group controlId='description'>
+					<Form.Label>Task Description</Form.Label>
+					<Form.Control
 						type='text'
 						name='description'
 						placeholder='Description'
 						value={formik.values.description}
 						onChange={formik.handleChange}
 					/>
-				</div>
+				</Form.Group>
 
-				<div className='task'>
-					<h2>Due Date</h2>
-					<input
+				<Form.Group controlId='dueDate'>
+					<Form.Label>Due Date</Form.Label>
+					<Form.Control
 						type='date'
 						name='dueDate'
 						value={formik.values.dueDate}
 						onChange={formik.handleChange}
 					/>
-				</div>
+				</Form.Group>
 
-				<div className='task'>
-					<h2>Is Active</h2>
-					<select
+				<Form.Group controlId='isActive'>
+					<Form.Label>Is Active</Form.Label>
+					<Dropdown>
+						<Dropdown.Toggle
+							variant='primary'
+							id='dropdown-basic'
+						>
+							{formik.values.isActive ? "True" : "False"}
+						</Dropdown.Toggle>
+						<Dropdown.Menu>
+							<Dropdown.Item
+								onClick={() => formik.setFieldValue("isActive", true)}
+							>
+								True
+							</Dropdown.Item>
+							<Dropdown.Item
+								onClick={() => formik.setFieldValue("isActive", false)}
+							>
+								False
+							</Dropdown.Item>
+						</Dropdown.Menu>
+					</Dropdown>
+					{/* <Form.Control
+						as='select'
 						name='isActive'
 						value={formik.values.isActive}
 						onChange={formik.handleChange}
 					>
 						<option value={true}>True</option>
 						<option value={false}>False</option>
-					</select>
-				</div>
+					</Form.Control> */}
+				</Form.Group>
 
-				<div className='task'>
-					<h2>Status</h2>
-					<select
+				<Form.Group controlId='status'>
+					<Form.Label>Status</Form.Label>
+					<Dropdown>
+						<Dropdown.Toggle
+							variant='primary'
+							id='dropdown-basic'
+						>
+							{formik.values.status}
+						</Dropdown.Toggle>
+						<Dropdown.Menu>
+							<Dropdown.Item
+								onClick={() => formik.setFieldValue("status", "To Do")}
+							>
+								To Do
+							</Dropdown.Item>
+							<Dropdown.Item
+								onClick={() => formik.setFieldValue("status", "Ongoing")}
+							>
+								Ongoing
+							</Dropdown.Item>
+							<Dropdown.Item
+								onClick={() => formik.setFieldValue("status", "Completed")}
+							>
+								Completed
+							</Dropdown.Item>
+						</Dropdown.Menu>
+					</Dropdown>
+				</Form.Group>
+				<div style={{ marginBottom: "10px" }}></div>
+
+				{/* <Form.Control
+						as='select'
+						name='isActive'
+						value={formik.values.isActive}
+						onChange={formik.handleChange}
+					>
+						<option value={true}>True</option>
+						<option value={false}>False</option>
+					</Form.Control> */}
+
+				{/* <Form.Group controlId='status'>
+					<Form.Label>Status</Form.Label>
+					<Form.Control
+						as='select'
 						name='status'
 						value={formik.values.status}
 						onChange={formik.handleChange}
@@ -115,24 +155,24 @@ const TodoTasks = ({ closeCreateModal }) => {
 						<option value='todo'>To Do</option>
 						<option value='ongoing'>Ongoing</option>
 						<option value='completed'>Completed</option>
-					</select>
-				</div>
+					</Form.Control>
+				</Form.Group> */}
 
 				<div className='task-action'>
-					<button
+					<Button
 						className='task-action-button'
 						type='submit'
 					>
 						Add Todo
-					</button>
-					<button
+					</Button>
+					<Button
 						className='task-action-button'
 						onClick={handleCloseModal}
 					>
 						Close
-					</button>
+					</Button>
 				</div>
-			</form>
+			</Form>
 		</div>
 	);
 };
