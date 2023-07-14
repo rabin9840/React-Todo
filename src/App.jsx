@@ -1,33 +1,38 @@
 import "./App.css";
-//  import TodoTasks from './components/TodoTasks'
-// import TodoItemsList from './components/TodoItems'
-// import CreateModal from "./components/Modals/CreateModal";
-// import TodoItemsList from "./components/TodoItemsList";
-// import { useState } from "react";
-// import Modal from 'react-modal';
-// import CreateTodos from "./components/TodosList/CreateTodos";
-
-// import { Container, Row, Col, Button } from "react-bootstrap";
-// import "bootstrap/dist/css/bootstrap.min.css";
-
+import { Route, Routes } from "react-router-dom";
 import TodoListPage from "./pages/TodoListPage";
 import DashboardPage from "./pages/DashboardPage";
+import { Nav, Navbar, Container } from "react-bootstrap";
 
 function App() {
-	// const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-
-	// const openCreateModal = () => {
-	// 	setIsCreateModalOpen(true);
-	// };
-
-	// const closeCreateModal = () => {
-	// 	setIsCreateModalOpen(false);
-	// };
-
 	return (
 		<>
-			<TodoListPage />
-			<DashboardPage />
+			<Navbar
+				bg='dark'
+				variant='dark'
+				expand='lg'
+			>
+				<Container>
+					<Navbar.Brand href='/'>Todos</Navbar.Brand>
+					<Navbar.Toggle aria-controls='navbar-nav' />
+					<Navbar.Collapse id='navbar-nav'>
+						<Nav className='me-auto'>
+							<Nav.Link href='/'>Dashboard</Nav.Link>
+							<Nav.Link href='/todos'>Todos</Nav.Link>
+						</Nav>
+					</Navbar.Collapse>
+				</Container>
+			</Navbar>
+			<Routes>
+				<Route
+					path='/'
+					element={<DashboardPage />}
+				/>
+				<Route
+					path='/todos'
+					element={<TodoListPage />}
+				/>
+			</Routes>
 		</>
 	);
 }
