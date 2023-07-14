@@ -13,7 +13,7 @@ function App() {
 				expand='lg'
 				className='navbar'
 			>
-				<Container>
+				<Container className='nav-container'>
 					<Navbar.Brand href='/'>Todos</Navbar.Brand>
 					<Navbar.Toggle aria-controls='navbar-nav' />
 					<Navbar.Collapse id='navbar-nav'>

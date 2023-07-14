@@ -31,6 +31,11 @@ const todosReducer = (state = initialState, action) => {
                 ...state,
                 todos: [...state.todos].sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate)),
             };
+        case actionTypes.FETCH_FIRST_TEN_TODOS_SUCCESS:
+            return {
+                ...state,
+                todos: action.payload,
+            }
         default:
             return state;
     }

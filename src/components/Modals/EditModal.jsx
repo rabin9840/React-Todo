@@ -9,7 +9,8 @@ const EditModal = ({
 	handleEdit,
 	initialTodo,
 }) => {
-	const [todo, setTodo] = useState(initialTodo);
+	// const [todo, setTodo] = useState(initialTodo);
+	const [todo, setTodo] = useState(() => initialTodo);
 
 	const handleInputChange = (e) => {
 		const { name, value } = e.target;
