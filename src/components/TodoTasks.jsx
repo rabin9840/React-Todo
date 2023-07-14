@@ -115,17 +115,17 @@ const TodoTasks = ({ closeCreateModal }) => {
 						</Dropdown.Toggle>
 						<Dropdown.Menu>
 							<Dropdown.Item
-								onClick={() => formik.setFieldValue("status", "To Do")}
+								onClick={() => formik.setFieldValue("status", "todo")}
 							>
 								To Do
 							</Dropdown.Item>
 							<Dropdown.Item
-								onClick={() => formik.setFieldValue("status", "Ongoing")}
+								onClick={() => formik.setFieldValue("status", "ongoing")}
 							>
 								Ongoing
 							</Dropdown.Item>
 							<Dropdown.Item
-								onClick={() => formik.setFieldValue("status", "Completed")}
+								onClick={() => formik.setFieldValue("status", "completed")}
 							>
 								Completed
 							</Dropdown.Item>
