@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DeleteModal from "./Modals/DeleteModal";
 import EditModal from "./Modals/EditModal";
 import { Button, Card, Col, Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useDispatch, useSelector } from "react-redux";
-// import { fetchTodos } from "../actions/todos/fetchTodos";
+import { fetchTodos } from "../actions/todos/fetchTodos";
 import { deleteTodo } from "../actions/todos/deleteTodo";
 import { updateTodo } from "../actions/todos/updateTodo";
 
@@ -48,6 +48,9 @@ const TodoItems = () => {
 	// const handleGetData = () => {
 	// 	dispatch(fetchTodos(username, password));
 	// };
+	useEffect(() => {
+		dispatch(fetchTodos(username, password));
+	}, []);
 
 	const handleDelete = () => {
 		dispatch(deleteTodo(deleteTodoId, username, password));
