@@ -5,20 +5,21 @@ import CreateModal from "./components/Modals/CreateModal";
 import TodoItemsList from "./components/TodoItemsList";
 import { useState } from "react";
 // import Modal from 'react-modal';
+import CreateTodos from "./components/TodosList/CreateTodos";
 
 import { Container, Row, Col, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-	const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+	// const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
-	const openCreateModal = () => {
-		setIsCreateModalOpen(true);
-	};
+	// const openCreateModal = () => {
+	// 	setIsCreateModalOpen(true);
+	// };
 
-	const closeCreateModal = () => {
-		setIsCreateModalOpen(false);
-	};
+	// const closeCreateModal = () => {
+	// 	setIsCreateModalOpen(false);
+	// };
 
 	return (
 		<>
@@ -29,7 +30,7 @@ function App() {
         </button>
 
       </div> */}
-			<Container
+			{/* <Container
 				fluid
 				className='d-flex align-items-center justify-content-center'
 			>
@@ -49,11 +50,12 @@ function App() {
 						</div>
 					</Col>
 				</Row>
-			</Container>
-			<CreateModal
+			</Container> */}
+			<CreateTodos />
+			{/* <CreateModal
 				closeCreateModal={closeCreateModal}
 				isCreateModalOpen={isCreateModalOpen}
-			/>
+			/> */}
 			<TodoItemsList />
 		</>
 	);
