@@ -11,6 +11,7 @@ import "./App.css";
 // import "bootstrap/dist/css/bootstrap.min.css";
 
 import TodoListPage from "./pages/TodoListPage";
+import DashboardPage from "./pages/DashboardPage";
 
 function App() {
 	// const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -26,6 +27,7 @@ function App() {
 	return (
 		<>
 			<TodoListPage />
+			<DashboardPage />
 		</>
 	);
 }

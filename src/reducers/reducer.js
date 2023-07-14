@@ -30,7 +30,7 @@ const todosReducer = (state = initialState, action) => {
             return {
                 ...state,
                 todos: [...state.todos].sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate)),
-            }
+            };
         default:
             return state;
     }
