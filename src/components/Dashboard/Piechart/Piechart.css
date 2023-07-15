@@ -1,0 +1,12 @@
+.pieChartContainer{
+    width: 400px;
+    height: 400px;
+    margin: auto;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
