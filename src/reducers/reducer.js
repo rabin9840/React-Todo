@@ -2,6 +2,7 @@ import { actionTypes } from "../actions/actionTypes";
 
 const initialState = {
     todos: [],
+    recentTodos: [],
 };
 
 const todosReducer = (state = initialState, action) => {
@@ -26,6 +27,12 @@ const todosReducer = (state = initialState, action) => {
                 ...state,
                 todos: state.todos.map((todo) => todo._id === action.payload._id ? action.payload : todo),
             };
+        case actionTypes.UPDATE_RECENT_TODO:
+            return {
+                ...state,
+                recentTodos: state.recentTodos.map((todo) => todo._id === action.payload._id ? action.payload : todo),
+
+            };
         case actionTypes.SORT_TODOS:
             return {
                 ...state,
@@ -35,6 +42,12 @@ const todosReducer = (state = initialState, action) => {
             return {
                 ...state,
                 todos: action.payload,
+            };
+        case actionTypes.FETCH_RECENT_TEN_TODOS_SUCCESS:
+            console.log(action.payload);
+            return {
+                ...state,
+                recentTodos: action.payload,
             }
         default:
             return state;
