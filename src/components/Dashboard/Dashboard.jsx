@@ -84,7 +84,7 @@ const Dashboard = () => {
 	};
 
 	return (
-		<>
+		<div className='dashboard-container'>
 			<h1>Dashboard</h1>
 			{/* <h2>{todosStatusData[0]._id}</h2> */}
 			{/* <TestComponent data={todosStatusData} /> */}
@@ -119,7 +119,7 @@ const Dashboard = () => {
 			<FirstTenTodos />
 			{/* <Piechart data={pieChartData} /> */}
 			<RecentTodos />
-		</>
+		</div>
 	);
 };
 

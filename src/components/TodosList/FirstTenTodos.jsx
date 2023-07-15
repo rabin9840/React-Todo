@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import DeleteModal from "../Modals/DeleteModal";
 import EditModal from "../Modals/EditModal";
-import { Button, Card, Col, Row } from "react-bootstrap";
+import { Button, Table, OverlayTrigger, Tooltip } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchFirstTenTodos } from "../../actions/todos/fetchFirstTenTodos";
@@ -45,9 +45,6 @@ const FirstTenTodos = () => {
 		setIsEditModalOpen(false);
 	};
 
-	// const handleGetData = () => {
-	// 	dispatch(fetchTodos(username, password));
-	// };
 	useEffect(() => {
 		dispatch(fetchFirstTenTodos(username, password));
 		console.log(todos);
@@ -62,64 +59,89 @@ const FirstTenTodos = () => {
 		dispatch(updateTodo(editTodoId, updatedTodo, username, password));
 	};
 
+	const renderTooltip = (todo) => (
+		<Tooltip
+			id={todo._id}
+			className='custom-tooltip'
+		>
+			<div className='todo-details'>
+				<h5>{todo.title}</h5>
+				<p>{todo.description}</p>
+				<p>
+					<span className='todo-info'>Due Date: </span>
+					<span className='todo-info-value'>{todo.dueDate.toString()}</span>
+				</p>
+				<p>
+					<span className='todo-info'>Is Active: </span>
+					<span className='todo-info-value'>{todo.isActive.toString()}</span>
+				</p>
+				<p>
+					<span className='todo-info'>Status: </span>
+					<span className='todo-info-value'>{todo.status}</span>
+				</p>
+			</div>
+		</Tooltip>
+	);
+
 	return (
 		<div className='todo-items'>
 			<h1>Your todos</h1>
-			{/* <Button
-				variant='primary'
-				onClick={handleGetData}
+
+			<Table
+				responsive
+				hover
 			>
-				Get Todos
-			</Button> */}
-			<Row className='card-container'>
-				{todos.map((todo, index) => (
-					<Col
-						key={index}
-						md={4}
-						sm={6}
-						xs={12}
-					>
-						<Card className='todo-card'>
-							<Card.Body>
-								<Card.Title className='todo-title'>{todo.title}</Card.Title>
-								<Card.Text className='todo-description'>
-									{todo.description}
-								</Card.Text>
-								<Card.Text>
-									<span className='due-date'>Due Date: </span>
-									<span className='due-date-value'>
-										{todo.dueDate.toString()}
-									</span>
-								</Card.Text>
-								<Card.Text>
-									<span className='todo-info'>Is Active: </span>
-									<span className='todo-info-value'>
-										{todo.isActive.toString()}
-									</span>
-								</Card.Text>
-								<Card.Text>
-									<span className='todo-info'>Status: </span>
-									<span className='todo-info-value'>{todo.status}</span>
-								</Card.Text>
-								<div className='card-buttons'>
-									<Button
-										variant='info'
-										onClick={() => openEditModal(todo._id, todo)}
-									>
-										Edit
-									</Button>
-									<Button
-										variant='danger'
-										onClick={() => openDeleteModal(todo._id)}
-									>
-										Delete
-									</Button>
-								</div>
-							</Card.Body>
-						</Card>
-					</Col>
-				))}
-			</Row>
+				<thead>
+					<tr>
+						<th>Title</th>
+						<th>Description</th>
+						<th>Due Date</th>
+						<th>Is Active</th>
+						<th>Status</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{todos.map((todo, index) => (
+						<tr key={index}>
+							<td>
+								<OverlayTrigger
+									placement='right'
+									overlay={renderTooltip(todo)}
+									popperConfig={{
+										modifiers: {
+											preventOverflow: {
+												enabled: true,
+												boundariesElement: "viewport",
+											},
+										},
+									}}
+								>
+									<span>{todo.title}</span>
+								</OverlayTrigger>
+							</td>
+							<td>{todo.description}</td>
+							<td>{todo.dueDate.toString()}</td>
+							<td>{todo.isActive.toString()}</td>
+							<td>{todo.status}</td>
+							<td>
+								<Button
+									variant='info'
+									onClick={() => openEditModal(todo._id, todo)}
+								>
+									Edit
+								</Button>
+								<Button
+									variant='danger'
+									onClick={() => openDeleteModal(todo._id)}
+								>
+									Delete
+								</Button>
+							</td>
+						</tr>
+					))}
+				</tbody>
+			</Table>
 
 			<DeleteModal
 				isModalOpen={isModalOpen}
