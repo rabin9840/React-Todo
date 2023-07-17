@@ -54,6 +54,11 @@
 .custom-table-container {
     border-radius: 10px;
     overflow: hidden;
+    margin: 30px;
+    /* background-color:blue;
+    padding: 15px; */
+    
+    
   }
   
   .custom-table {
