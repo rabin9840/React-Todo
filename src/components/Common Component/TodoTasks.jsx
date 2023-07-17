@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux";
-import { addTodo } from "../actions/todos/addTodo";
+import { addTodo } from "../../actions/todos/addTodo";
 import { Form, Button, Dropdown } from "react-bootstrap";
 import { useFormik } from "formik";
-import todoSchema from "../validation/todoSchema";
-import { resetCreateTodoPerformed } from "../actions/todos/resetCreateTodoPerformed";
+import todoSchema from "../../validation/todoSchema";
+import { resetCreateTodoPerformed } from "../../actions/todos/resetCreateTodoPerformed";
 const TodoTasks = ({ closeCreateModal }) => {
 	const dispatch = useDispatch();
 

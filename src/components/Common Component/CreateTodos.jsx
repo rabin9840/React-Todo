@@ -1,5 +1,5 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
-import CreateModal from "../Modals/CreateModal";
+import CreateModal from "./Modals/CreateModal";
 import { useState } from "react";
 
 const CreateTodos = () => {
