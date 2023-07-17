@@ -1,12 +1,12 @@
-import Piechart from "./Piechart/Piechart";
+import Piechart from "../Piechart/Piechart";
 // import Test from "./Test";
 import axios from "axios";
-import FirstTenTodos from "../TodosList/FirstTenTodos";
-import CountCard from "./CountCard";
+import FirstTenTodos from "../FirstTenTodos";
+import CountCard from "../CountCard";
 import { useSelector } from "react-redux";
 // import TopCard from "./TopCard";
 import "./Dashboard.css";
-import RecentTodos from "../TodosList/RecentTodos";
+import RecentTodos from "../RecentTodos";
 
 import { useEffect, useState } from "react";
 const Dashboard = () => {
@@ -15,12 +15,7 @@ const Dashboard = () => {
 	const [ongoingStatusCount, setOngoingStatusCount] = useState();
 	const [completedStatusCount, setCompletedStatusCount] = useState();
 	const [todoStatusCount, setTodoStatusCount] = useState();
-	// const [todosStatusCountData, setTodosStatusCountData] = useState({
-	// 	ongoingStatusCount: "",
-	// 	completedStatusCount: "",
-	// 	todoStatusCount: "",
-	// 	totalTodosCount: "",
-	// });
+
 	const username = "12345678";
 	const password = "12345678";
 	const todosData = useSelector((state) => state.todos.todos);
@@ -64,15 +59,6 @@ const Dashboard = () => {
 		getTodosStatusData();
 	}, [todosData]);
 
-	// const totalTodosCount = () => {
-	// 	const ongoingStatusCount = todosStatusData[0].count;
-	// 	const completedStatusCount = todosStatusData[1].count;
-	// 	const todoStatusCount = todosStatusData[2].count;
-	// 	const totalTodos =
-	// 		ongoingStatusCount + completedStatusCount + todoStatusCount;
-	// 	return totalTodos;
-	// };
-
 	const pieChartData = {
 		labels: todosStatusData.map((todosStatus) => todosStatus._id),
 		datasets: [
@@ -86,8 +72,6 @@ const Dashboard = () => {
 	return (
 		<div className='dashboard-container'>
 			<h1>Dashboard</h1>
-			{/* <h2>{todosStatusData[0]._id}</h2> */}
-			{/* <TestComponent data={todosStatusData} /> */}
 			<div className='top-card-container'>
 				<div className='count-container'>
 					<CountCard
@@ -108,16 +92,7 @@ const Dashboard = () => {
 					<Piechart data={pieChartData} />
 				</div>
 			</div>
-			{/* <TopCard
-				statusDetail={
-					(totalTodosCount,
-					ongoingStatusCount,
-					completedStatusCount,
-					todoStatusCount)
-				}
-			/> */}
 			<FirstTenTodos />
-			{/* <Piechart data={pieChartData} /> */}
 			<RecentTodos />
 		</div>
 	);

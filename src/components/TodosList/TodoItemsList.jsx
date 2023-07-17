@@ -1,23 +1,16 @@
 import { useState, useEffect } from "react";
-import DeleteModal from "../Modals/DeleteModal";
-import EditModal from "../Modals/EditModal";
-import { Button, Table, Tooltip, OverlayTrigger } from "react-bootstrap";
+import DeleteModal from "../Common Component/Modals/DeleteModal";
+import EditModal from "../Common Component/Modals/EditModal";
+import { Button, Tooltip, OverlayTrigger, Table } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchRecentTodos } from "../../actions/todos/fetchRecentTodos";
-import { deleteRecentTodo } from "../../actions/todos/deleteRecentTodo";
-import { updateRecentTodo } from "../../actions/todos/updateRecentTodo";
-import TodosTable from "../Common Component/TodosTable";
-import { resetCreateTodoPerformed } from "../../actions/todos/resetCreateTodoPerformed";
+import { fetchTodos } from "../../actions/todos/fetchTodos";
+import { deleteTodo } from "../../actions/todos/deleteTodo";
+import { updateTodo } from "../../actions/todos/updateTodo";
 
-const RecentTodos = () => {
+const TodoItems = () => {
 	const dispatch = useDispatch();
-	const recentTodos = useSelector((state) => state.todos.recentTodos);
-	const isTodoCreated = useSelector(
-		(state) => state.todos.isCreatedTodoPerformed
-	);
-	// const recentTodos = useSelector((state) => state.todos.todos);
-	console.log(recentTodos);
+	const todos = useSelector((state) => state.todos.todos);
 
 	const [deleteTodoId, setDeleteTodoId] = useState("");
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,7 +19,6 @@ const RecentTodos = () => {
 	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
 	const [editTodo, setEditTodo] = useState({});
-	const [isDeletePerformed, setIsDeletePerformed] = useState(false);
 
 	const username = "12345678";
 	const password = "12345678";
@@ -41,6 +33,9 @@ const RecentTodos = () => {
 	};
 
 	const openEditModal = (todoId, todo) => {
+		console.log(todo);
+		console.log(todoId);
+
 		setEditTodoId(todoId);
 		setEditTodo(todo);
 		setIsEditModalOpen(true);
@@ -50,24 +45,20 @@ const RecentTodos = () => {
 		setIsEditModalOpen(false);
 	};
 
+	// const handleGetData = () => {
+	// 	dispatch(fetchTodos(username, password));
+	// };
 	useEffect(() => {
-		dispatch(fetchRecentTodos(username, password));
-		console.log(recentTodos);
+		dispatch(fetchTodos(username, password));
 	}, []);
 
-	useEffect(() => {
-		dispatch(fetchRecentTodos(username, password));
-		setIsDeletePerformed(false);
-		dispatch(resetCreateTodoPerformed());
-	}, [isDeletePerformed, isTodoCreated]);
-
 	const handleDelete = () => {
-		dispatch(deleteRecentTodo(deleteTodoId, username, password));
+		dispatch(deleteTodo(deleteTodoId, username, password));
 		closeDeleteModal();
 	};
 
 	const handleEdit = (updatedTodo) => {
-		dispatch(updateRecentTodo(editTodoId, updatedTodo, username, password));
+		dispatch(updateTodo(editTodoId, updatedTodo, username, password));
 	};
 
 	const renderTooltip = (todo) => (
@@ -95,8 +86,8 @@ const RecentTodos = () => {
 	);
 	return (
 		<div className='todo-items'>
-			<h1>Your Recent todos</h1>
-			{/* <Table
+			<h1>Your todos</h1>
+			<Table
 				responsive
 				hover
 				className='custom-table'
@@ -112,7 +103,7 @@ const RecentTodos = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{recentTodos.map((todo, index) => (
+					{todos.map((todo, index) => (
 						<tr key={index}>
 							<td>
 								<OverlayTrigger
@@ -151,13 +142,7 @@ const RecentTodos = () => {
 						</tr>
 					))}
 				</tbody>
-			</Table> */}
-			<TodosTable
-				todos={recentTodos}
-				renderTooltip={renderTooltip}
-				openEditModal={openEditModal}
-				openDeleteModal={openDeleteModal}
-			/>
+			</Table>
 
 			<DeleteModal
 				isModalOpen={isModalOpen}
@@ -174,4 +159,4 @@ const RecentTodos = () => {
 	);
 };
 
-export default RecentTodos;
+export default TodoItems;

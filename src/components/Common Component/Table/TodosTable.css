@@ -1,0 +1,110 @@
+
+.custom-tooltip {
+	background-color: #333;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	padding: 8px;
+	font-size: 14px;
+	max-width: 200px;
+  }
+  
+  Table {
+	font-family: Poppins, sans-serif;
+	box-sizing: border-box;
+  }
+  
+  .table-responsive{
+	/* background-color: blue; */
+	/* padding: 15px;
+	border-radius: 15px; */
+  }
+  .tooltip {
+	max-width: none !important;
+  }
+  
+  td {
+	position: relative;
+	/* max-width: 25px; */
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+  }
+  
+  td span {
+	display: inline-block;
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+  }
+  
+  td:hover .tooltip {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 100%;
+	transform: translateX(10px);
+	z-index: 999;
+  }
+  
+  .content{
+	background-color: #f1f5f9;
+  }
+
+.custom-table-container {
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 30px;
+    /* background-color:blue;
+    padding: 15px; */
+    
+    
+  }
+  
+  .custom-table {
+    table-layout: fixed;
+    width: 100%;
+  }
+  
+  .custom-table td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 0;
+    padding: 8px; /* Add some padding to improve readability on mobile */
+  }
+  
+  .custom-table td span {
+    display: inline-block;
+    max-width: 100%;
+    padding: 0 4px;
+  }
+  
+  .custom-table thead th {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 0;
+    padding: 8px;
+    font-weight: bold; /* Make the header text bold */
+  }
+  
+  /* Mobile responsiveness */
+  @media screen and (max-width: 767px) {
+    .custom-table td {
+      padding: 8px;
+      white-space: normal; /* Allow text wrapping on small screens */
+      max-width: none;
+    }
+  
+    .custom-table td span {
+      padding: 0;
+    }
+  
+    .custom-table thead th {
+      padding: 8px;
+      white-space: normal; /* Allow text wrapping for table headers on small screens */
+      max-width: none;
+    }
+  }
+  

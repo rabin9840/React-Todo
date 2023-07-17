@@ -1,5 +1,5 @@
-import Dashboard from "../components/Dashboard/Dashboard";
-import CreateTodos from "../components/TodosList/CreateTodos";
+import Dashboard from "../components/Dashboard/Dashboardmain/Dashboard";
+import CreateTodos from "../components/Common Component/CreateTodos";
 
 const DashboardPage = () => {
 	return (

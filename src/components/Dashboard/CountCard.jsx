@@ -1,14 +1,9 @@
 import { Card } from "react-bootstrap";
-import "./Dashboard.css";
+import "./Dashboardmain/Dashboard.css";
 
 const CountCard = ({ statusData }) => {
 	console.log(statusData);
 	return (
-		// <>
-		// 	<h1>this is card component</h1>
-		// 	<h1>{statusData.status}</h1>
-		// 	<h1>{statusData.count}</h1>
-		// </>
 		<Card className='todo-card-count'>
 			<Card.Body>
 				<Card.Title>{statusData.status}</Card.Title>
