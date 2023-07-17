@@ -1,5 +1,6 @@
 import { Table, OverlayTrigger, Button } from "react-bootstrap";
 import "./TodosTable.css";
+import { CiEdit } from "react-icons/ci";
 
 const TodosTable = ({
 	todos,
