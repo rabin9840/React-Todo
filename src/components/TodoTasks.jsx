@@ -3,7 +3,7 @@ import { addTodo } from "../actions/todos/addTodo";
 import { Form, Button, Dropdown } from "react-bootstrap";
 import { useFormik } from "formik";
 import todoSchema from "../validation/todoSchema";
-
+import { resetCreateTodoPerformed } from "../actions/todos/resetCreateTodoPerformed";
 const TodoTasks = ({ closeCreateModal }) => {
 	const dispatch = useDispatch();
 
@@ -21,6 +21,7 @@ const TodoTasks = ({ closeCreateModal }) => {
 		onSubmit: (values, { resetForm }) => {
 			console.log(values);
 			dispatch(addTodo(values));
+			dispatch(resetCreateTodoPerformed());
 			resetForm();
 		},
 	});

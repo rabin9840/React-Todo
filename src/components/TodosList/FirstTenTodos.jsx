@@ -7,10 +7,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchFirstTenTodos } from "../../actions/todos/fetchFirstTenTodos";
 import { deleteTodo } from "../../actions/todos/deleteTodo";
 import { updateTodo } from "../../actions/todos/updateTodo";
+import { resetCreateTodoPerformed } from "../../actions/todos/resetCreateTodoPerformed";
 
 const FirstTenTodos = () => {
 	const dispatch = useDispatch();
 	const todos = useSelector((state) => state.todos.todos);
+	const isTodoCreated = useSelector(
+		(state) => state.todos.isCreatedTodoPerformed
+	);
+	console.log(isTodoCreated);
 
 	const [deleteTodoId, setDeleteTodoId] = useState("");
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,6 +24,8 @@ const FirstTenTodos = () => {
 	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
 	const [editTodo, setEditTodo] = useState({});
+
+	const [isDeletePerformed, setIsDeletePerformed] = useState(false);
 
 	const username = "12345678";
 	const password = "12345678";
@@ -50,9 +57,17 @@ const FirstTenTodos = () => {
 		console.log(todos);
 	}, []);
 
+	useEffect(() => {
+		console.log(isTodoCreated);
+		dispatch(fetchFirstTenTodos(username, password));
+		setIsDeletePerformed(false);
+		dispatch(resetCreateTodoPerformed());
+	}, [isDeletePerformed, isTodoCreated]);
+
 	const handleDelete = () => {
 		dispatch(deleteTodo(deleteTodoId, username, password));
 		closeDeleteModal();
+		setIsDeletePerformed(true);
 	};
 
 	const handleEdit = (updatedTodo) => {
@@ -90,6 +105,7 @@ const FirstTenTodos = () => {
 			<Table
 				responsive
 				hover
+				className='custom-table'
 			>
 				<thead>
 					<tr>

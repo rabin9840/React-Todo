@@ -3,7 +3,6 @@ import { actionTypes } from "../actions/actionTypes";
 const initialState = {
     todos: [],
     recentTodos: [],
-    isCreatedTodoPerformed: false,
 };
 
 const todosReducer = (state = initialState, action) => {
@@ -12,56 +11,33 @@ const todosReducer = (state = initialState, action) => {
             return {
                 ...state,
                 todos: [...state.todos, action.payload],
-                recentTodos: [...state.recentTodos, action.payload],
-                isCreatedTodoPerformed: true,
-            };
-        case actionTypes.RESET_CREATE_TODO_PERFORMED:
-            return {
-                ...state,
-                isCreateTodoPerformed: false,
             };
         case actionTypes.FETCH_TODOS:
             return {
                 ...state,
                 todos: action.payload,
             };
-        // case actionTypes.DELETE_TODO:
-        //     return {
-        //         ...state,
-        //         todos: state.todos.filter((todo) => todo._id !== action.payload),
-        //     };
-        // case actionTypes.DELETE_RECENT_TODO:
-        //     return {
-        //         ...state,
-        //         recentTodos: state.recentTodos.filter((todo) => todo._id !== action.payload),
-        //     };
         case actionTypes.DELETE_TODO:
             return {
                 ...state,
                 todos: state.todos.filter((todo) => todo._id !== action.payload),
+            };
+        case actionTypes.DELETE_RECENT_TODO:
+            return {
+                ...state,
                 recentTodos: state.recentTodos.filter((todo) => todo._id !== action.payload),
             };
-
-        // case actionTypes.UPDATE_TODO:
-        //     return {
-        //         ...state,
-        //         todos: state.todos.map((todo) => todo._id === action.payload._id ? action.payload : todo),
-        //     };
-        // case actionTypes.UPDATE_RECENT_TODO:
-        //     return {
-        //         ...state,
-        //         recentTodos: state.recentTodos.map((todo) => todo._id === action.payload._id ? action.payload : todo),
-
-        //     };
-
         case actionTypes.UPDATE_TODO:
             return {
                 ...state,
                 todos: state.todos.map((todo) => todo._id === action.payload._id ? action.payload : todo),
+            };
+        case actionTypes.UPDATE_RECENT_TODO:
+            return {
+                ...state,
                 recentTodos: state.recentTodos.map((todo) => todo._id === action.payload._id ? action.payload : todo),
 
             };
-
         case actionTypes.SORT_TODOS:
             return {
                 ...state,

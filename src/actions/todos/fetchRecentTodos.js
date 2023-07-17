@@ -15,6 +15,7 @@ export const fetchRecentTodos = (username, password) => {
             // Dispatch the action to store the first 10 todos in the state
             console.log(recentTodos);
             dispatch({ type: 'FETCH_RECENT_TEN_TODOS_SUCCESS', payload: recentTodos });
+
         } catch (error) {
             // Handle any errors
             // dispatch({ type: 'FETCH_FIRST_TEN_TODOS_FAILURE', payload: error.message });

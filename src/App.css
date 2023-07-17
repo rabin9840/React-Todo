@@ -254,9 +254,8 @@ h1 {
   
   .table-responsive{
 	/* background-color: blue; */
-	padding: 15px;
-	border-radius: 15px;
-	border: 5ps solid black;
+	/* padding: 15px;
+	border-radius: 15px; */
   }
   .tooltip {
 	max-width: none !important;
@@ -264,7 +263,7 @@ h1 {
   
   td {
 	position: relative;
-	max-width: 25px;
+	/* max-width: 25px; */
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -288,4 +287,8 @@ h1 {
   
   .content{
 	background-color: #f1f5f9;
+  }
+
+  .custom-table{
+	border: 15px solid rgb(0, 0, 0);
   }

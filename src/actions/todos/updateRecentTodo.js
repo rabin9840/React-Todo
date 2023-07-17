@@ -14,7 +14,8 @@ export const updateRecentTodo = (editTodoId, updatedTodo, username, password) =>
                 // Update the todo in the state
                 // setTodos(prevTodos => prevTodos.map(todo => todo._id === editTodoId ? response.data.data : todo));
                 dispatch({
-                    type: actionTypes.UPDATE_RECENT_TODO,
+                    // type: actionTypes.UPDATE_RECENT_TODO,
+                    type: actionTypes.UPDATE_TODO,
                     payload: response.data.data,
                 })
 
