@@ -87,7 +87,7 @@ const TodoItems = () => {
 	);
 	return (
 		<div className='todo-items'>
-			<h1>Your todos</h1>
+			<h1>Todos</h1>
 			{/* <Table
 				responsive
 				hover

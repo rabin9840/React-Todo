@@ -1,6 +1,7 @@
 * {
 	margin: 0;
 	padding: 0;
+	font-family: Poppins,sans-serif;
 }
 /* .main-app-container {
 	display: flex;
@@ -109,38 +110,21 @@
 	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-.add-button {
-	font-size: 24px;
-	height: 50px;
-	width: 50px;
-	background-color: #007bff;
-	color: #fff;
-	border: none;
-	border-radius: 25%;
-	cursor: pointer;
-	margin-left: 15px;
-	box-shadow: 0ghtpx 2px 5px rgba(0, 0, 0, 0.2);
-	transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
 
-.add-button:hover {
-	background-color: #0056b3;
-	transform: scale(1.1);
-}
 
-h1 {
+/* h1 {
 	text-align: center;
 	margin-bottom: 20px;
 	margin-top: 25px;
 	color: #333;
 	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-}
+} */
 
-body {
+/* body {
 	margin: 0 75px;
 	background-color: #f1f5f9;
 	font-family: Arial, sans-serif;
-}
+} */
 
 #mode-selector {
 	border: 1px solid #333;
@@ -170,7 +154,7 @@ input {
 	background-color: #007bff;
 	color: white;
 	border: none;
-	border-radius: 25px;
+	border-radius: 8px;
 	cursor: pointer;
 	font-weight: bold;
 	transition: background-color 0.3s ease-in-out;
@@ -188,10 +172,12 @@ input {
 	color: white;
 }
 
-h1 {
+/* h1 {
+	font-family: poppins, sans-serif;
 	font-size: 24px;
 	margin-bottom: 20px;
-}
+	color: #164e63;;
+} */
 
 .card-container {
 	display: flex;
@@ -236,3 +222,99 @@ h1 {
 	justify-content: space-between;
 	margin-top: 20px;
 }
+
+body {
+	font-family: 'Helvetica', sans-serif;
+	line-height: 1.6;
+	background-color: #f0f0f0;
+	color: #333;
+  }
+  
+  .todo-items {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+  }
+  
+  h1 {
+	font-size: 36px;
+	margin-bottom: 20px;
+	text-align: center;
+  }
+  
+  p {
+	font-size: 16px;
+	margin-bottom: 10px;
+  }
+
+
+  /* Modal Styling */
+.modal {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+	z-index: 9999;
+  }
+  
+  .modal-content {
+	max-width: 400px;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 4px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .modal h2 {
+	font-size: 24px;
+	margin-bottom: 10px;
+  }
+  
+  .modal p {
+	margin-bottom: 20px;
+  }
+  
+  .modal button {
+	padding: 10px 15px;
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+  }
+  
+  .modal button:not(:last-child) {
+	margin-right: 10px;
+  }
+  
+  .modal button:hover {
+	background-color: #0056b3;
+  }
+  
+  .modal button:disabled {
+	background-color: #ccc;
+	cursor: not-allowed;
+  }
+  
+  /* Responsive Styling */
+  @media (max-width: 600px) {
+	h1 {
+	  font-size: 28px;
+	}
+	
+	.custom-table th,
+	.custom-table td {
+	  padding: 8px;
+	  font-size: 14px;
+	}
+	
+	.modal-content {
+	  max-width: 300px;
+	  padding: 15px;
+	}
+  }

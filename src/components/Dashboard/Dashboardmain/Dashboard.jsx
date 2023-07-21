@@ -33,14 +33,12 @@ const Dashboard = () => {
 				);
 				console.log(response.data.data);
 				const todosStatusData = response.data.data;
+				console.log(todosStatusData);
 				setTodosStatusData(todosStatusData);
-				// setTodosStatusCountData(() => {
-
-				// })
 				todosStatusData.map((todoStatus) => {
-					if (todoStatus._id === "ongoing") {
+					if (todoStatus.status === "ongoing") {
 						setOngoingStatusCount(todoStatus.count);
-					} else if (todoStatus._id === "completed") {
+					} else if (todoStatus.status === "completed") {
 						setCompletedStatusCount(todoStatus.count);
 					} else {
 						setTodoStatusCount(todoStatus.count);
@@ -60,7 +58,8 @@ const Dashboard = () => {
 	}, [todosData]);
 
 	const pieChartData = {
-		labels: todosStatusData.map((todosStatus) => todosStatus._id),
+		// labels: todosStatusData.map((todosStatus) => todosStatus._id),
+		labels: todosStatusData.map((todosStatus) => todosStatus.status),
 		datasets: [
 			{
 				data: todosStatusData.map((todosStatus) => todosStatus.count),

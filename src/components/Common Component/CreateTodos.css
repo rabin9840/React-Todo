@@ -1,0 +1,68 @@
+/* CreateTodos.css */
+
+/* General Styling */
+body {
+    font-family: 'Helvetica', sans-serif;
+    line-height: 1.6;
+    background-color: #f0f0f0;
+    color: #333;
+  }
+  
+  .app-container {
+    text-align: center;
+    margin-bottom:25px;
+    margin-top:25px;
+
+  }
+  
+  .app-heading {
+    font-size: 36px;
+    margin-bottom: 0;
+    color: #2a5c71; /* Change text color to black */
+    font-weight: 600;
+  }
+  .add-button {
+	font-size: 24px;
+	height: 50px;
+	width: 50px;
+	background-color: #2a5c71;
+	color: #fff;
+	border: none;
+	border-radius: 25%;
+	cursor: pointer;
+	margin-left: 15px;
+	box-shadow: 0ghtpx 2px 5px rgba(0, 0, 0, 0.2);
+	transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.add-button:hover {
+	background-color: #1f576f;
+	transform: scale(1.1);
+}
+
+  
+  
+  .plus-icon {
+    /* Adjust the size of the plus icon */
+    font-size: 1.5rem;
+  }
+  
+  /* Adjust alignment */
+  @media (max-width: 600px) {
+    .app-heading {
+      font-size: 28px;
+    }
+  
+    .add-button {
+      font-size: 20px;
+      width: 50px;
+      height: 50px;
+      margin-top: 10px; /* Add margin to adjust the alignment */
+      border-radius: 8px;
+    }
+  
+    .plus-icon {
+      font-size: 1.3rem;
+    }
+  }
+  
