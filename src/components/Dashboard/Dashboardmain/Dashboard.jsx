@@ -29,6 +29,7 @@ const Dashboard = () => {
 	const username = "12345678";
 	const password = "12345678";
 	const todosData = useSelector((state) => state.todos.todos);
+	console.log(todosData);
 
 	useEffect(() => {
 		const getTodosStatusData = async () => {

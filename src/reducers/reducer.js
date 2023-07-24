@@ -4,6 +4,7 @@ const initialState = {
     todos: [],
     recentTodos: [],
     isCreatedTodoPerformed: false,
+    pageCount: 1,
 };
 
 const todosReducer = (state = initialState, action) => {
@@ -23,7 +24,9 @@ const todosReducer = (state = initialState, action) => {
         case actionTypes.FETCH_TODOS:
             return {
                 ...state,
-                todos: action.payload,
+                // todos: action.payload,
+                todos: action.payload.docs,
+                pageCount: action.payload.totalPages,
             };
         // case actionTypes.DELETE_TODO:
         //     return {

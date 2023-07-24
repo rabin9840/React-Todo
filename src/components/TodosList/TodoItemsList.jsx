@@ -1,17 +1,147 @@
+// import { useState, useEffect } from "react";
+// import DeleteModal from "../Common Component/Modals/DeleteModal";
+// import EditModal from "../Common Component/Modals/EditModal";
+// // import { Button, Tooltip, OverlayTrigger, Table } from "react-bootstrap";
+// import { Tooltip } from "react-bootstrap";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import { useDispatch, useSelector } from "react-redux";
+// import { fetchTodos } from "../../actions/todos/fetchTodos";
+// import { deleteTodo } from "../../actions/todos/deleteTodo";
+// import { updateTodo } from "../../actions/todos/updateTodo";
+// import TodosTable from "../Common Component/Table/TodosTable";
+// import ReactPaginate from "react-paginate";
+// import FilterComponent from "./FilterComponent/FilterComponent";
+// import Button from "react-bootstrap/Button"; // Import the Button component
+// import { BsFilter } from "react-icons/bs";
+
+// const TodoItems = () => {
+// 	const dispatch = useDispatch();
+// 	const todos = useSelector((state) => state.todos.todos);
+// 	const pageCount = useSelector((state) => state.todos.pageCount);
+// 	console.log("pageCount" + pageCount);
+// 	console.log(todos);
+
+// 	const [deleteTodoId, setDeleteTodoId] = useState("");
+// 	const [isModalOpen, setIsModalOpen] = useState(false);
+
+// 	const [editTodoId, setEditTodoId] = useState("");
+// 	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+// 	const [editTodo, setEditTodo] = useState({});
+// 	const [currentPage, setCurrentPage] = useState(1);
+// 	const [todosPerPage, setTodosPerPage] = useState(10);
+// 	const [statusFilter, setStatusFilter] = useState("All");
+
+// 	const [showFilter, setShowFilter] = useState(false); // Add state to track filter visibility
+
+// 	const toggleFilter = () => {
+// 		setShowFilter((prevState) => !prevState);
+// 	};
+
+// 	const username = "12345678";
+// 	const password = "12345678";
+
+// 	const openDeleteModal = (todoId) => {
+// 		setDeleteTodoId(todoId);
+// 		setIsModalOpen(true);
+// 	};
+
+// 	const closeDeleteModal = () => {
+// 		setIsModalOpen(false);
+// 	};
+
+// 	const openEditModal = (todoId, todo) => {
+// 		console.log(todo);
+// 		console.log(todoId);
+
+// 		setEditTodoId(todoId);
+// 		setEditTodo(todo);
+// 		setIsEditModalOpen(true);
+// 	};
+
+// 	const closeEditModal = () => {
+// 		setIsEditModalOpen(false);
+// 	};
+
+// 	// const handleGetData = () => {
+// 	// 	dispatch(fetchTodos(username, password));
+// 	// };
+
+// 	const handlePerPageChange = (e) => {
+// 		console.log(todosPerPage);
+// 		setTodosPerPage(parseInt(e.target.value));
+// 		setCurrentPage(1);
+// 		// Optional: Fetch todos again with the updated todosPerPage value
+// 		// You may choose to update the todos immediately or wait for the user to apply filters.
+// 		// dispatch(fetchTodos(username, password, currentPage, parseInt(e.target.value), statusFilter));
+// 	};
+
+// 	// useEffect(() => {
+// 	// 	dispatch(fetchTodos(username, password));
+// 	// }, []);
+
+// 	// const handleFilterChange = () => {
+// 	// 	// Fetch filtered data based on current filters and page
+// 	// 	dispatch(
+// 	// 		fetchTodos(username, password, currentPage, todosPerPage, statusFilter)
+// 	// 	);
+// 	// };
+
+// 	const handleFilter = (filters) => {
+// 		// console.log("clicked");
+// 		// setStatusFilter(filters);
+// 		// // Handle other filters as needed
+// 		// console.log(statusFilter);
+// 		console.log("clicked");
+// 		console.log(filters);
+// 		dispatch(fetchTodos(username, password, 1, todosPerPage, filters));
+// 	};
+
+// 	useEffect(() => {
+// 		console.log(statusFilter);
+
+// 		console.log(todosPerPage);
+// 		dispatch(
+// 			fetchTodos(username, password, currentPage, todosPerPage, statusFilter)
+// 		);
+// 	}, [currentPage, todosPerPage, statusFilter, dispatch]);
+
+// 	// const handlePageClick = (e) => {
+// 	// 	setCurrentPage(e.selected + 1);
+// 	// };
+// 	const handlePageClick = (e) => {
+// 		const selectedPage = e.selected + 1;
+// 		setCurrentPage(selectedPage);
+// 	};
+
+// 	const handleDelete = () => {
+// 		dispatch(deleteTodo(deleteTodoId, username, password));
+// 		closeDeleteModal();
+// 	};
+
+// 	const handleEdit = (updatedTodo) => {
+// 		dispatch(updateTodo(editTodoId, updatedTodo, username, password));
+// 	};
+
 import { useState, useEffect } from "react";
 import DeleteModal from "../Common Component/Modals/DeleteModal";
 import EditModal from "../Common Component/Modals/EditModal";
-import { Button, Tooltip, OverlayTrigger, Table } from "react-bootstrap";
+import { Tooltip } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTodos } from "../../actions/todos/fetchTodos";
 import { deleteTodo } from "../../actions/todos/deleteTodo";
 import { updateTodo } from "../../actions/todos/updateTodo";
 import TodosTable from "../Common Component/Table/TodosTable";
+import ReactPaginate from "react-paginate";
+import FilterComponent from "./FilterComponent/FilterComponent";
+import Button from "react-bootstrap/Button";
+import { BsFilter } from "react-icons/bs";
 
 const TodoItems = () => {
 	const dispatch = useDispatch();
 	const todos = useSelector((state) => state.todos.todos);
+	const pageCount = useSelector((state) => state.todos.pageCount);
 
 	const [deleteTodoId, setDeleteTodoId] = useState("");
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,6 +150,15 @@ const TodoItems = () => {
 	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
 	const [editTodo, setEditTodo] = useState({});
+	const [currentPage, setCurrentPage] = useState(1);
+	const [todosPerPage, setTodosPerPage] = useState(10);
+	const [statusFilter, setStatusFilter] = useState("All");
+
+	const [showFilter, setShowFilter] = useState(false);
+
+	const toggleFilter = () => {
+		setShowFilter((prevState) => !prevState);
+	};
 
 	const username = "12345678";
 	const password = "12345678";
@@ -34,9 +173,6 @@ const TodoItems = () => {
 	};
 
 	const openEditModal = (todoId, todo) => {
-		console.log(todo);
-		console.log(todoId);
-
 		setEditTodoId(todoId);
 		setEditTodo(todo);
 		setIsEditModalOpen(true);
@@ -46,12 +182,34 @@ const TodoItems = () => {
 		setIsEditModalOpen(false);
 	};
 
-	// const handleGetData = () => {
-	// 	dispatch(fetchTodos(username, password));
-	// };
+	const handlePerPageChange = (e) => {
+		const newTodosPerPage = parseInt(e.target.value);
+
+		// Set todosPerPage and currentPage only if the new value is greater than the old value
+		if (newTodosPerPage > todosPerPage) {
+			setTodosPerPage(newTodosPerPage);
+			setCurrentPage(1);
+		} else {
+			setTodosPerPage(newTodosPerPage);
+		}
+	};
+
+	const handleFilter = (filters) => {
+		setStatusFilter(filters.status);
+		// Handle other filters as needed
+	};
+
 	useEffect(() => {
-		dispatch(fetchTodos(username, password));
-	}, []);
+		console.log(currentPage);
+		dispatch(
+			fetchTodos(username, password, currentPage, todosPerPage, statusFilter)
+		);
+	}, [currentPage, todosPerPage, statusFilter, dispatch]);
+
+	const handlePageClick = (e) => {
+		const selectedPage = e.selected + 1;
+		setCurrentPage(selectedPage);
+	};
 
 	const handleDelete = () => {
 		dispatch(deleteTodo(deleteTodoId, username, password));
@@ -85,9 +243,50 @@ const TodoItems = () => {
 			</div>
 		</Tooltip>
 	);
+
 	return (
 		<div className='todo-items'>
 			<h1>Todos</h1>
+			<div className='d-flex justify-content-start'>
+				<label className='pe-2'>Result per page</label>
+				{/* Step 3: Attach the event handler to update the state when the selection changes */}
+				<select
+					name='perPage'
+					className='rounded-2 select-per-page'
+					value={todosPerPage}
+					onChange={handlePerPageChange}
+				>
+					<option value='5'>5</option>
+					<option value='10'>10</option>
+					<option value='50'>50</option>
+					<option value='100'>100</option>
+					<option value='500'>500</option>
+				</select>
+			</div>
+
+			{/* Add a button to toggle the filter component visibility */}
+			{/* <div className='d-flex justify-content-start'>
+				<button onClick={toggleFilter}>
+					{showFilter ? "Hide Filter" : "Show Filter"}
+				</button>
+			</div> */}
+			{/* Show the filter button with the filter icon */}
+			<div className='d-flex justify-content-start'>
+				<Button
+					variant='secondary'
+					style={{ backgroundColor: "#1f576f", borderColor: "#1f576f" }}
+					onClick={toggleFilter}
+				>
+					<BsFilter className='me-1' />
+					{showFilter ? "Hide Filter" : "Show Filter"}
+				</Button>
+			</div>
+
+			{/* Show FilterComponent based on the state */}
+			{showFilter && <FilterComponent onFilter={handleFilter} />}
+
+			{/* <FilterComponent onFilter={handleFilter} /> */}
+
 			{/* <Table
 				responsive
 				hover
@@ -149,6 +348,26 @@ const TodoItems = () => {
 				renderTooltip={renderTooltip}
 				openEditModal={openEditModal}
 				openDeleteModal={openDeleteModal}
+			/>
+
+			<ReactPaginate
+				breakLabel='...'
+				nextLabel='next >'
+				onPageChange={handlePageClick}
+				pageRangeDisplayed={5}
+				pageCount={pageCount}
+				previousLabel='< previous'
+				renderOnZeroPageCount={null}
+				marginPagesDisplayed={2}
+				containerClassName='pagination justify-content-center'
+				pageClassName='page-item'
+				pageLinkClassName='page-link'
+				previousClassName='page-item'
+				previousLinkClassName='page-link'
+				nextClassName='page-item'
+				nextLinkClassName='page-link'
+				activeClassName='active'
+				forcePage={currentPage - 1}
 			/>
 
 			<DeleteModal
