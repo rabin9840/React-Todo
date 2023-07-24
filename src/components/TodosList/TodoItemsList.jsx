@@ -25,7 +25,7 @@ const TodoItems = () => {
 	const [editTodo, setEditTodo] = useState({});
 	const [currentPage, setCurrentPage] = useState(1);
 	const [todosPerPage, setTodosPerPage] = useState(10);
-	const [statusFilter, setStatusFilter] = useState("todo");
+	const [statusFilter, setStatusFilter] = useState("All");
 
 	const username = "12345678";
 	const password = "12345678";
