@@ -10,10 +10,15 @@ import { deleteTodo } from "../../actions/todos/deleteTodo";
 import { updateTodo } from "../../actions/todos/updateTodo";
 import TodosTable from "../Common Component/Table/TodosTable";
 import ReactPaginate from "react-paginate";
+import FilterComponent from "./FilterComponent/FilterComponent";
+import Button from "react-bootstrap/Button"; // Import the Button component
+import { BsFilter } from "react-icons/bs";
 
 const TodoItems = () => {
 	const dispatch = useDispatch();
 	const todos = useSelector((state) => state.todos.todos);
+	const pageCount = useSelector((state) => state.todos.pageCount);
+	console.log(pageCount);
 	console.log(todos);
 
 	const [deleteTodoId, setDeleteTodoId] = useState("");
@@ -26,6 +31,12 @@ const TodoItems = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [todosPerPage, setTodosPerPage] = useState(10);
 	const [statusFilter, setStatusFilter] = useState("All");
+
+	const [showFilter, setShowFilter] = useState(false); // Add state to track filter visibility
+
+	const toggleFilter = () => {
+		setShowFilter((prevState) => !prevState);
+	};
 
 	const username = "12345678";
 	const password = "12345678";
@@ -55,9 +66,6 @@ const TodoItems = () => {
 	// const handleGetData = () => {
 	// 	dispatch(fetchTodos(username, password));
 	// };
-	const handlePageChange = (selectedPage) => {
-		setCurrentPage(selectedPage.selected + 1);
-	};
 
 	const handlePerPageChange = (e) => {
 		setTodosPerPage(parseInt(e.target.value));
@@ -65,23 +73,38 @@ const TodoItems = () => {
 		// You may choose to update the todos immediately or wait for the user to apply filters.
 		// dispatch(fetchTodos(username, password, currentPage, parseInt(e.target.value), statusFilter));
 	};
+
 	// useEffect(() => {
 	// 	dispatch(fetchTodos(username, password));
 	// }, []);
 
-	const handleFilterChange = () => {
-		// Fetch filtered data based on current filters and page
-		dispatch(
-			fetchTodos(username, password, currentPage, todosPerPage, statusFilter)
-		);
+	// const handleFilterChange = () => {
+	// 	// Fetch filtered data based on current filters and page
+	// 	dispatch(
+	// 		fetchTodos(username, password, currentPage, todosPerPage, statusFilter)
+	// 	);
+	// };
+
+	const handleFilter = (filters) => {
+		// console.log("clicked");
+		// setStatusFilter(filters);
+		// // Handle other filters as needed
+		// console.log(statusFilter);
+		console.log("clicked");
+		console.log(filters);
+		dispatch(fetchTodos(username, password, 1, todosPerPage, filters));
 	};
 
 	useEffect(() => {
-		// Fetch initial data on component mount
+		console.log(statusFilter);
 		dispatch(
 			fetchTodos(username, password, currentPage, todosPerPage, statusFilter)
 		);
 	}, [currentPage, todosPerPage, statusFilter, dispatch]);
+
+	const handlePageClick = (e) => {
+		setCurrentPage(e.selected + 1);
+	};
 
 	const handleDelete = () => {
 		dispatch(deleteTodo(deleteTodoId, username, password));
@@ -115,6 +138,7 @@ const TodoItems = () => {
 			</div>
 		</Tooltip>
 	);
+
 	return (
 		<div className='todo-items'>
 			<h1>Todos</h1>
@@ -134,6 +158,29 @@ const TodoItems = () => {
 					<option value='500'>500</option>
 				</select>
 			</div>
+
+			{/* Add a button to toggle the filter component visibility */}
+			{/* <div className='d-flex justify-content-start'>
+				<button onClick={toggleFilter}>
+					{showFilter ? "Hide Filter" : "Show Filter"}
+				</button>
+			</div> */}
+			{/* Show the filter button with the filter icon */}
+			<div className='d-flex justify-content-start'>
+				<Button
+					variant='secondary'
+					style={{ backgroundColor: "#1f576f", borderColor: "#1f576f" }}
+					onClick={toggleFilter}
+				>
+					<BsFilter className='me-1' />
+					{showFilter ? "Hide Filter" : "Show Filter"}
+				</Button>
+			</div>
+
+			{/* Show FilterComponent based on the state */}
+			{showFilter && <FilterComponent onFilter={handleFilter} />}
+
+			{/* <FilterComponent onFilter={handleFilter} /> */}
 
 			{/* <Table
 				responsive
@@ -197,10 +244,23 @@ const TodoItems = () => {
 				openEditModal={openEditModal}
 				openDeleteModal={openDeleteModal}
 			/>
+
 			<ReactPaginate
-				pageCount={Math.ceil(todos.length / todosPerPage)}
-				onPageChange={handlePageChange}
-				containerClassName='pagination'
+				breakLabel='...'
+				nextLabel='next >'
+				onPageChange={handlePageClick}
+				pageRangeDisplayed={5}
+				pageCount={pageCount}
+				previousLabel='< previous'
+				renderOnZeroPageCount={null}
+				marginPagesDisplayed={2}
+				containerClassName='pagination justify-content-center'
+				pageClassName='page-item'
+				pageLinkClassName='page-link'
+				previousClassName='page-item'
+				previousLinkClassName='page-link'
+				nextClassName='page-item'
+				nextLinkClassName='page-link'
 				activeClassName='active'
 			/>
 
