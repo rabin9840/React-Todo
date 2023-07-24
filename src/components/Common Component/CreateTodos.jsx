@@ -1,6 +1,8 @@
+import React, { useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
+import { FaPlus } from "react-icons/fa";
 import CreateModal from "./Modals/CreateModal";
-import { useState } from "react";
+import "./CreateTodos.css"; // Import the custom CSS file
 
 const CreateTodos = () => {
 	const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -30,7 +32,7 @@ const CreateTodos = () => {
 								className='add-button'
 								onClick={openCreateModal}
 							>
-								+
+								<FaPlus className='plus-icon' />
 							</Button>
 						</div>
 					</Col>

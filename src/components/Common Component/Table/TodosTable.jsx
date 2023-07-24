@@ -1,5 +1,18 @@
-import { Table, OverlayTrigger, Button } from "react-bootstrap";
+import { Table, OverlayTrigger, Tooltip } from "react-bootstrap";
 import "./TodosTable.css";
+import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
+import styled from "styled-components";
+
+const IconWrapper = styled.span`
+	display: inline-block;
+	cursor: pointer;
+	margin-right: 10px;
+	transition: transform 0.2s ease-in-out;
+
+	&:hover {
+		transform: scale(1.2);
+	}
+`;
 
 const TodosTable = ({
 	todos,
@@ -7,9 +20,26 @@ const TodosTable = ({
 	openEditModal,
 	openDeleteModal,
 }) => {
+	const renderEditTooltip = (props) => (
+		<Tooltip
+			id='edit-tooltip'
+			{...props}
+		>
+			Edit
+		</Tooltip>
+	);
+
+	const renderDeleteTooltip = (props) => (
+		<Tooltip
+			id='delete-tooltip'
+			{...props}
+		>
+			Delete
+		</Tooltip>
+	);
+
 	return (
 		<div className='custom-table-container'>
-			{" "}
 			{/* Apply the border-radius to this div */}
 			<Table
 				responsive
@@ -50,18 +80,31 @@ const TodosTable = ({
 							<td>{todo.isActive.toString()}</td>
 							<td>{todo.status}</td>
 							<td>
-								<Button
-									variant='info'
-									onClick={() => openEditModal(todo._id, todo)}
+								{/* Edit Icon */}
+								<OverlayTrigger
+									placement='top'
+									overlay={renderEditTooltip}
 								>
-									Edit
-								</Button>
-								<Button
-									variant='danger'
-									onClick={() => openDeleteModal(todo._id)}
+									<IconWrapper onClick={() => openEditModal(todo._id, todo)}>
+										<AiOutlineEdit
+											size={24}
+											color='#007bff'
+										/>
+									</IconWrapper>
+								</OverlayTrigger>
+
+								{/* Delete Icon */}
+								<OverlayTrigger
+									placement='top'
+									overlay={renderDeleteTooltip}
 								>
-									Delete
-								</Button>
+									<IconWrapper onClick={() => openDeleteModal(todo._id)}>
+										<AiOutlineDelete
+											size={24}
+											color='#dc3545'
+										/>
+									</IconWrapper>
+								</OverlayTrigger>
 							</td>
 						</tr>
 					))}

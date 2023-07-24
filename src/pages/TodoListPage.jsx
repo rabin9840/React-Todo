@@ -1,9 +1,13 @@
 import TodoItemsList from "../components/TodosList/TodoItemsList";
+import CreateTodos from "../components/Common Component/CreateTodos";
 
 const TodoListPage = () => {
 	return (
 		<>
-			<TodoItemsList />
+			<div className='todo-list-container'>
+				<CreateTodos />
+				<TodoItemsList />
+			</div>
 		</>
 	);
 };

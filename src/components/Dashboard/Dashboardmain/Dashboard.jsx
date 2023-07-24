@@ -1,5 +1,8 @@
 import Piechart from "../Piechart/Piechart";
 // import Test from "./Test";
+// import Bardiagram from "../Bar Diagram/Bardiagram";
+
+import BarChart from "../Bar Diagram/BarChart";
 import axios from "axios";
 import FirstTenTodos from "../FirstTenTodos";
 import CountCard from "../CountCard";
@@ -15,6 +18,13 @@ const Dashboard = () => {
 	const [ongoingStatusCount, setOngoingStatusCount] = useState();
 	const [completedStatusCount, setCompletedStatusCount] = useState();
 	const [todoStatusCount, setTodoStatusCount] = useState();
+
+	// const [bardiagramStatusData, setBardiagramStatusData] = useState([]);
+
+	// const [dates, setDates] = useState([]);
+	// const [todoCounts, setTodoCounts] = useState([]);
+	// const [ongoingCounts, setOngoingCounts] = useState([]);
+	// const [completedCounts, setCompletedCounts] = useState([]);
 
 	const username = "12345678";
 	const password = "12345678";
@@ -33,14 +43,12 @@ const Dashboard = () => {
 				);
 				console.log(response.data.data);
 				const todosStatusData = response.data.data;
+				console.log(todosStatusData);
 				setTodosStatusData(todosStatusData);
-				// setTodosStatusCountData(() => {
-
-				// })
 				todosStatusData.map((todoStatus) => {
-					if (todoStatus._id === "ongoing") {
+					if (todoStatus.status === "ongoing") {
 						setOngoingStatusCount(todoStatus.count);
-					} else if (todoStatus._id === "completed") {
+					} else if (todoStatus.status === "completed") {
 						setCompletedStatusCount(todoStatus.count);
 					} else {
 						setTodoStatusCount(todoStatus.count);
@@ -56,11 +64,76 @@ const Dashboard = () => {
 			}
 		};
 
+		// const getBarDiagramData = async () => {
+		// 	try {
+		// 		const response = await axios.get(
+		// 			"http://localhost:3000/todos/barData?datePreset=last30days",
+		// 			{
+		// 				headers: {
+		// 					Authorization: `Basic ${btoa(`${username}:${password}`)}`,
+		// 				},
+		// 			}
+		// 		);
+		// 		console.log(response.data.data);
+		// 		const todosCountByMonth = response.data.data;
+		// 		console.log(todosCountByMonth);
+		// 		setBardiagramStatusData(todosCountByMonth);
+
+		// 		const getStatusCount = (item, status) => {
+		// 			const statusCount = item.statusCounts.find(
+		// 				(entry) => entry.status === status
+		// 			);
+		// 			console.log(statusCount);
+		// 			statusCount ? statusCount.count : 0;
+		// 		};
+		// 		todosCountByMonth.map((item) => {
+		// 			// const labels = item.date;
+		// 			// const todoCounts = getStatusCount(item, "todo");
+		// 			// const ongoingCounts = getStatusCount(item, "ongoing");
+		// 			// const completedCounts = getStatusCount(item, "completed");
+		// 			dates.push(item.date);
+		// 			// setDates((prev)=>...prev,item.date);
+		// 			todoCounts.push(getStatusCount(item, "todo"));
+		// 			setTodoCounts(todoCounts);
+		// 			ongoingCounts.push(getStatusCount(item, "ongoing"));
+		// 			setOngoingCounts(ongoingCounts);
+		// 			completedCounts.push(getStatusCount(item, "completed"));
+		// 			setCompletedCounts(completedCounts);
+		// 		});
+
+		// 		// const barChartData = {
+		// 		// 	labels: dates,
+		// 		// 	datasets: [
+		// 		// 		{
+		// 		// 			label: "Todo",
+		// 		// 			backgroundColor: "rgba(54, 162, 235, 0.6)",
+		// 		// 			data: todoCounts,
+		// 		// 		},
+		// 		// 		{
+		// 		// 			label: "Ongoing",
+		// 		// 			backgroundColor: "rgba(255, 99, 132, 0.6)",
+		// 		// 			data: ongoingCounts,
+		// 		// 		},
+		// 		// 		{
+		// 		// 			label: "Completed",
+		// 		// 			backgroundColor: "rgba(75, 192, 192, 0.6)",
+		// 		// 			data: completedCounts,
+		// 		// 		},
+		// 		// 	],
+		// 		// // };
+		// 		// console.log(barChartData);
+		// 	} catch (error) {
+		// 		console.log(error);
+		// 	}
+		// };
+		// getBarDiagramData();
+
 		getTodosStatusData();
 	}, [todosData]);
 
 	const pieChartData = {
-		labels: todosStatusData.map((todosStatus) => todosStatus._id),
+		// labels: todosStatusData.map((todosStatus) => todosStatus._id),
+		labels: todosStatusData.map((todosStatus) => todosStatus.status),
 		datasets: [
 			{
 				data: todosStatusData.map((todosStatus) => todosStatus.count),
@@ -68,6 +141,29 @@ const Dashboard = () => {
 			},
 		],
 	};
+
+	// const barChartData = {
+	// 	labels: dates,
+	// 	datasets: [
+	// 		{
+	// 			label: "Todo",
+	// 			backgroundColor: "rgba(54, 162, 235, 0.6)",
+	// 			data: todoCounts,
+	// 		},
+	// 		{
+	// 			label: "Ongoing",
+	// 			backgroundColor: "rgba(255, 99, 132, 0.6)",
+	// 			data: ongoingCounts,
+	// 		},
+	// 		{
+	// 			label: "Completed",
+	// 			backgroundColor: "rgba(75, 192, 192, 0.6)",
+	// 			data: completedCounts,
+	// 		},
+	// 	],
+	// };
+
+	// console.log(barChartData);
 
 	return (
 		<div className='dashboard-container'>
@@ -91,6 +187,11 @@ const Dashboard = () => {
 				<div className='piechart-container'>
 					<Piechart data={pieChartData} />
 				</div>
+			</div>
+
+			<div className='bardiagram-container'>
+				<BarChart></BarChart>
+				{/* <BarChart todosCountByMonth={bardiagramStatusData}></BarChart> */}
 			</div>
 			<FirstTenTodos />
 			<RecentTodos />

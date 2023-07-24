@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchTodos } from "../../actions/todos/fetchTodos";
 import { deleteTodo } from "../../actions/todos/deleteTodo";
 import { updateTodo } from "../../actions/todos/updateTodo";
+import TodosTable from "../Common Component/Table/TodosTable";
 
 const TodoItems = () => {
 	const dispatch = useDispatch();
@@ -86,8 +87,8 @@ const TodoItems = () => {
 	);
 	return (
 		<div className='todo-items'>
-			<h1>Your todos</h1>
-			<Table
+			<h1>Todos</h1>
+			{/* <Table
 				responsive
 				hover
 				className='custom-table'
@@ -142,7 +143,13 @@ const TodoItems = () => {
 						</tr>
 					))}
 				</tbody>
-			</Table>
+			</Table> */}
+			<TodosTable
+				todos={todos}
+				renderTooltip={renderTooltip}
+				openEditModal={openEditModal}
+				openDeleteModal={openDeleteModal}
+			/>
 
 			<DeleteModal
 				isModalOpen={isModalOpen}
