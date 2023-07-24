@@ -1,0 +1,8 @@
+.barchart-container{
+    border: 1px solid black;
+    padding:10px;
+    background-color: white;
+    border-radius: 25px;
+    color: #333;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}

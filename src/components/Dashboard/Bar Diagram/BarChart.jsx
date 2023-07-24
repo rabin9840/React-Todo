@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { Bar } from "react-chartjs-2";
 import { Container, Row, Col, Form } from "react-bootstrap";
+import "./BarChart.css";
 
 const username = "12345678";
 const password = "12345678";
@@ -146,6 +147,11 @@ const BarChart = () => {
 						>
 							<option value='last7days'>Last 7 Days</option>
 							<option value='last30days'>Last 30 Days</option>
+							<option value='default'>Today</option>
+							<option value='thismonth'>This Month</option>
+							<option value='lastmonth'>LastMonth</option>
+							<option value='lastweek'>Last Week</option>
+
 							{/* Add other date presets as needed */}
 						</Form.Select>
 					</div>
