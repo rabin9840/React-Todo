@@ -12,6 +12,7 @@ import TodosTable from "../Common Component/Table/TodosTable";
 const TodoItems = () => {
 	const dispatch = useDispatch();
 	const todos = useSelector((state) => state.todos.todos);
+	console.log(todos);
 
 	const [deleteTodoId, setDeleteTodoId] = useState("");
 	const [isModalOpen, setIsModalOpen] = useState(false);
