@@ -172,19 +172,22 @@ const Dashboard = () => {
 			<div className='top-card-container'>
 				<div className='count-container'>
 					<CountCard
+						className='count-card'
 						statusData={{ status: "Total", count: totalTodosCount }}
 					></CountCard>
 					<CountCard
+						className='count-card'
 						statusData={{ status: "Ongoing", count: ongoingStatusCount }}
 					></CountCard>
 					<CountCard
+						className='count-card'
 						statusData={{ status: "Todo", count: todoStatusCount }}
 					></CountCard>
 					<CountCard
+						className='count-card'
 						statusData={{ status: "Completed", count: completedStatusCount }}
 					></CountCard>
 				</div>
-
 				<div className='piechart-container'>
 					<Piechart data={pieChartData} />
 				</div>
