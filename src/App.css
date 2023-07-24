@@ -318,3 +318,68 @@ body {
 	  padding: 15px;
 	}
   }
+
+
+  /* For Result per page component */
+ /* styles.css */
+
+/* Todo Items Container */
+.todo-items {
+	padding: 20px;
+	background-color: #ffffff;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Todos Title */
+  .todo-items h1 {
+	font-size: 24px;
+	font-weight: bold;
+	color: #333;
+	margin-bottom: 20px;
+  }
+  
+  /* Result per page Container */
+  .result-per-page-container {
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+  }
+  
+  /* Result per page Label */
+  .result-per-page-container label {
+	margin-right: 10px;
+	font-weight: 500;
+	color: #333;
+  }
+  
+  /* Result per page Select Input */
+  .result-per-page-container select {
+	padding: 8px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: #f8f8f8;
+	color: #333;
+  }
+  
+  /* Optional: Adjust the border-radius for a more rounded appearance */
+  .result-per-page-container select.rounded-2 {
+	border-radius: 8px;
+  }
+  
+  /* Optional: Add box-shadow for a slight elevation effect */
+  .result-per-page-container select.select-per-page {
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Optional: Add a hover effect for the select input */
+  .result-per-page-container select.select-per-page:hover {
+	background-color: #f0f0f0;
+  }
+  
+  /* Optional: Add a transition effect for a smoother hover */
+  .result-per-page-container select.select-per-page {
+	transition: background-color 0.2s ease-in-out;
+  }
+  

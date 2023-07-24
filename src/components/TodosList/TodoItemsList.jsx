@@ -153,6 +153,12 @@ const TodoItems = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [todosPerPage, setTodosPerPage] = useState(10);
 	const [statusFilter, setStatusFilter] = useState("All");
+	const [filter, setFilter] = useState({
+		status: "All",
+		dueDate: "",
+		isActive: "",
+		title: "",
+	});
 
 	const [showFilter, setShowFilter] = useState(false);
 
@@ -195,16 +201,27 @@ const TodoItems = () => {
 	};
 
 	const handleFilter = (filters) => {
-		setStatusFilter(filters.status);
-		// Handle other filters as needed
+		// console.log("clicked");
+		// setStatusFilter(filters);
+		// // Handle other filters as needed
+		// console.log(statusFilter);
+		console.log("clicked");
+		console.log(filters);
+		setCurrentPage(1);
+		setFilter(filters);
+		dispatch(fetchTodos(username, password, 1, todosPerPage, filters));
 	};
 
+	// useEffect(() => {
+	// 	console.log(currentPage);
+	// 	dispatch(
+	// 		fetchTodos(username, password, currentPage, todosPerPage, statusFilter)
+	// 	);
+	// }, [currentPage, todosPerPage, statusFilter, dispatch]);
 	useEffect(() => {
 		console.log(currentPage);
-		dispatch(
-			fetchTodos(username, password, currentPage, todosPerPage, statusFilter)
-		);
-	}, [currentPage, todosPerPage, statusFilter, dispatch]);
+		dispatch(fetchTodos(username, password, currentPage, todosPerPage, filter));
+	}, [currentPage, todosPerPage, filter, dispatch]);
 
 	const handlePageClick = (e) => {
 		const selectedPage = e.selected + 1;
@@ -247,9 +264,8 @@ const TodoItems = () => {
 	return (
 		<div className='todo-items'>
 			<h1>Todos</h1>
-			<div className='d-flex justify-content-start'>
-				<label className='pe-2'>Result per page</label>
-				{/* Step 3: Attach the event handler to update the state when the selection changes */}
+			<div className='result-per-page-container'>
+				<label>Result per page</label>
 				<select
 					name='perPage'
 					className='rounded-2 select-per-page'
@@ -274,7 +290,11 @@ const TodoItems = () => {
 			<div className='d-flex justify-content-start'>
 				<Button
 					variant='secondary'
-					style={{ backgroundColor: "#1f576f", borderColor: "#1f576f" }}
+					style={{
+						backgroundColor: "#1f576f",
+						borderColor: "#1f576f",
+						marginBottom: "10px",
+					}}
 					onClick={toggleFilter}
 				>
 					<BsFilter className='me-1' />
