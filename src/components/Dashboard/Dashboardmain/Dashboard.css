@@ -1,77 +1,15 @@
-/* .dashboard-container{
-    background-color: #f1f5f9;
-}
-
-.top-card-container{
-    display: flex;
-    flex-wrap: wrap;
-	justify-content: center;
-    flex-direction:row;
-    justify-content: space-evenly;
-    margin-bottom: 50px;
-
-}
-
-.todo-card-count{
-    width: 300px;
-	padding: 20px;
-	border-radius: 10px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
-	background-image: linear-gradient(
-		rgb(163, 195, 210),
-		rgb(238, 216, 216)
-	) !important;
-	margin: 10px;
-}
-
-.count-container{
-    background-color: blue;
-    left:0
-} */
-
-/* CSS for top-card-container */
-/* CSS for top-card-container */
-/* CSS for count-container */
-.top-card-container{
-    display: flex;
-    flex-wrap: wrap;
-	/* justify-content: center; */
-    flex-direction:row;
-    justify-content: space-evenly;
-    margin-bottom: 50px;
-   
-
-}
 .count-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
-  }
+    display: flex;
+    flex-wrap: wrap;
+    margin: 50px 0;
   
-  /* CSS for count-card (Individual card) */
-  .count-card {
-    /* background-color: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
-    padding: 20px;
-    /* background-color: #fff; */
-    
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    margin:15px 0;
   }
 
-  .card-body{
-    width: 300px;
-	padding: 20px;
-	border-radius: 10px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
-	background-image: linear-gradient(
-		rgb(163, 195, 210),
-		rgb(238, 216, 216)
-	) !important;
-	margin: 10px;
+  .todo-card-count{
+    width: 200px;
+    margin:0 30px;
+    background-color: aliceblue;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   }
   
   

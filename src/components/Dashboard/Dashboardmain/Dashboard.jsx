@@ -188,11 +188,10 @@ const Dashboard = () => {
 						statusData={{ status: "Completed", count: completedStatusCount }}
 					></CountCard>
 				</div>
-				<div className='piechart-container'>
-					<Piechart data={pieChartData} />
-				</div>
 			</div>
-
+			<div className='piechart-container'>
+				<Piechart data={pieChartData} />
+			</div>
 			<div className='bardiagram-container'>
 				<BarChart></BarChart>
 				{/* <BarChart todosCountByMonth={bardiagramStatusData}></BarChart> */}
