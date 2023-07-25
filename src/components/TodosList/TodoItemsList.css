@@ -83,10 +83,11 @@
     text-decoration: none;
     color: #333;
     padding: 2px 15px;
-    border: 1px solid #ccc;
+  
     border-radius: 15%;
     background-color: #fff; /* Set the background color to white */
     cursor: pointer;
+    
   }
   
   .pagination-container .active .page-link {
