@@ -78,6 +78,7 @@ const TodoTasks = ({ closeCreateModal }) => {
 						<Dropdown.Toggle
 							variant='primary'
 							id='dropdown-basic'
+							style={{ backgroundColor: "#1f576f", borderColor: "#1f576f" }}
 						>
 							{formik.values.isActive ? "True" : "False"}
 						</Dropdown.Toggle>
@@ -111,6 +112,7 @@ const TodoTasks = ({ closeCreateModal }) => {
 						<Dropdown.Toggle
 							variant='primary'
 							id='dropdown-basic'
+							style={{ backgroundColor: "#1f576f", borderColor: "#1f576f" }}
 						>
 							{formik.values.status}
 						</Dropdown.Toggle>
@@ -163,12 +165,14 @@ const TodoTasks = ({ closeCreateModal }) => {
 					<Button
 						className='task-action-button'
 						type='submit'
+						style={{ backgroundColor: "#1f576f", borderColor: "#1f576f" }}
 					>
 						Add Todo
 					</Button>
 					<Button
 						className='task-action-button'
 						onClick={handleCloseModal}
+						style={{ backgroundColor: "#1f576f", borderColor: "#1f576f" }}
 					>
 						Close
 					</Button>
