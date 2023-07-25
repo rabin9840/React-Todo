@@ -137,6 +137,7 @@ import ReactPaginate from "react-paginate";
 import FilterComponent from "./FilterComponent/FilterComponent";
 import Button from "react-bootstrap/Button";
 import { BsFilter } from "react-icons/bs";
+import "./TodoItemsList.css";
 
 const TodoItems = () => {
 	const dispatch = useDispatch();
@@ -264,30 +265,8 @@ const TodoItems = () => {
 	return (
 		<div className='todo-items'>
 			<h1>Todos</h1>
-			<div className='result-per-page-container'>
-				<label>Result per page</label>
-				<select
-					name='perPage'
-					className='rounded-2 select-per-page'
-					value={todosPerPage}
-					onChange={handlePerPageChange}
-				>
-					<option value='5'>5</option>
-					<option value='10'>10</option>
-					<option value='50'>50</option>
-					<option value='100'>100</option>
-					<option value='500'>500</option>
-				</select>
-			</div>
-
-			{/* Add a button to toggle the filter component visibility */}
-			{/* <div className='d-flex justify-content-start'>
-				<button onClick={toggleFilter}>
-					{showFilter ? "Hide Filter" : "Show Filter"}
-				</button>
-			</div> */}
 			{/* Show the filter button with the filter icon */}
-			<div className='d-flex justify-content-start'>
+			<div className='d-flex justify-content-end'>
 				<Button
 					variant='secondary'
 					style={{
@@ -301,11 +280,54 @@ const TodoItems = () => {
 					{showFilter ? "Hide Filter" : "Show Filter"}
 				</Button>
 			</div>
-
 			{/* Show FilterComponent based on the state */}
 			{showFilter && <FilterComponent onFilter={handleFilter} />}
-
 			{/* <FilterComponent onFilter={handleFilter} /> */}
+			<div className='header-container'>
+				<div className='result-per-page-container'>
+					<label>Result per page</label>
+					<select
+						name='perPage'
+						className='rounded-2 select-per-page'
+						value={todosPerPage}
+						onChange={handlePerPageChange}
+					>
+						<option value='5'>5</option>
+						<option value='10'>10</option>
+						<option value='50'>50</option>
+						<option value='100'>100</option>
+						<option value='500'>500</option>
+					</select>
+				</div>
+				<div className='pagination-container'>
+					<ReactPaginate
+						breakLabel='...'
+						nextLabel='next'
+						onPageChange={handlePageClick}
+						pageRangeDisplayed={5}
+						pageCount={pageCount}
+						previousLabel='prev'
+						// previousLabel='< prev'
+						renderOnZeroPageCount={null}
+						marginPagesDisplayed={2}
+						containerClassName='pagination justify-content-center'
+						pageClassName='page-item'
+						pageLinkClassName='page-link'
+						previousClassName='page-item'
+						previousLinkClassName='page-link'
+						nextClassName='page-item'
+						nextLinkClassName='page-link'
+						activeClassName='active'
+						forcePage={currentPage - 1}
+					/>
+				</div>
+			</div>
+			{/* Add a button to toggle the filter component visibility */}
+			{/* <div className='d-flex justify-content-start'>
+				<button onClick={toggleFilter}>
+					{showFilter ? "Hide Filter" : "Show Filter"}
+				</button>
+			</div> */}
 
 			{/* <Table
 				responsive
@@ -369,27 +391,43 @@ const TodoItems = () => {
 				openEditModal={openEditModal}
 				openDeleteModal={openDeleteModal}
 			/>
+			<div className='pagination-container'>
+				<ReactPaginate
+					breakLabel='...'
+					nextLabel='next'
+					onPageChange={handlePageClick}
+					pageRangeDisplayed={5}
+					pageCount={pageCount}
+					previousLabel='prev'
+					// previousLabel='< prev'
+					renderOnZeroPageCount={null}
+					marginPagesDisplayed={2}
+					containerClassName='pagination justify-content-center'
+					pageClassName='page-item'
+					pageLinkClassName='page-link'
+					previousClassName='page-item'
+					previousLinkClassName='page-link'
+					nextClassName='page-item'
+					nextLinkClassName='page-link'
+					activeClassName='active'
+					forcePage={currentPage - 1}
+				/>
+			</div>
 
-			<ReactPaginate
-				breakLabel='...'
-				nextLabel='next >'
-				onPageChange={handlePageClick}
-				pageRangeDisplayed={5}
+			{/* <ReactPaginate
+				previousLabel={"prev"}
+				nextLabel={"next"}
+				breakLabel={"...."}
+				breakClassName={"break-me"}
 				pageCount={pageCount}
-				previousLabel='< previous'
-				renderOnZeroPageCount={null}
-				marginPagesDisplayed={2}
-				containerClassName='pagination justify-content-center'
-				pageClassName='page-item'
-				pageLinkClassName='page-link'
-				previousClassName='page-item'
-				previousLinkClassName='page-link'
-				nextClassName='page-item'
-				nextLinkClassName='page-link'
-				activeClassName='active'
-				forcePage={currentPage - 1}
-			/>
-
+				marginPagesDisplayed={1}
+				pageRangeDisplayed={3}
+				onPageChange={handlePageClick}
+				containerClassName={"pagination"}
+				subContainerClassName={"pages pagination"}
+				activeClassName={"active"}
+				forcePage={currentPage ? currentPage - 1 : 1} 
+			/>*/}
 			<DeleteModal
 				isModalOpen={isModalOpen}
 				closeDeleteModal={closeDeleteModal}

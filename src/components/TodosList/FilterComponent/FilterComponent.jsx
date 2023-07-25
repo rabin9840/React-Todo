@@ -37,7 +37,8 @@ const FilterComponent = ({ onFilter }) => {
 					value={statusFilter}
 					onChange={(e) => setStatusFilter(e.target.value)}
 				>
-					<option value='All'>All</option>
+					{/* <option value='All'>All</option> */}
+					<option value=''>Select Status</option>
 					<option value='ongoing'>Ongoing</option>
 					<option value='todo'>Todo</option>
 					<option value='completed'>Completed</option>
@@ -49,6 +50,7 @@ const FilterComponent = ({ onFilter }) => {
 					value={isActiveFilter}
 					onChange={(e) => setIsActiveFilter(e.target.value)}
 				>
+					<option value=''>Select active</option>
 					<option value='true'>True</option>
 					<option value='false'>False</option>
 				</select>
@@ -59,6 +61,7 @@ const FilterComponent = ({ onFilter }) => {
 					type='text'
 					value={titleFilter}
 					onChange={(e) => setTitleFilter(e.target.value)}
+					placeholder='Enter title'
 				/>
 			</div>
 			<div className='filter-item'>
