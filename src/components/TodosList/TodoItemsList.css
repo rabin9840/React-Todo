@@ -1,0 +1,122 @@
+.header-container{
+    display:flex;
+    margin-bottom: 20px;
+    padding:5px;
+}
+
+
+  /* Result per page Container */
+  .result-per-page-container {
+	display: flex;
+	align-items: center;
+	/* margin-bottom: 20px; */
+	margin:auto;
+	flex:1
+  }
+  
+  /* Result per page Label */
+  .result-per-page-container label {
+	margin-right: 10px;
+	font-weight: 500;
+	color: #333;
+  }
+  
+  /* Result per page Select Input */
+  .result-per-page-container select {
+	padding: 8px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: #f8f8f8;
+	color: #333;
+  }
+  
+  /* Optional: Adjust the border-radius for a more rounded appearance */
+  .result-per-page-container select.rounded-2 {
+	border-radius: 8px;
+  }
+  
+  /* Optional: Add box-shadow for a slight elevation effect */
+  .result-per-page-container select.select-per-page {
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Optional: Add a hover effect for the select input */
+  .result-per-page-container select.select-per-page:hover {
+	background-color: #f0f0f0;
+  }
+  
+  /* Optional: Add a transition effect for a smoother hover */
+  .result-per-page-container select.select-per-page {
+	transition: background-color 0.2s ease-in-out;
+  }
+  
+
+/* Custom CSS for pagination */
+
+.pagination-container {
+    flex:1;
+    display: flex;
+    justify-content: right;
+    margin-top: 20px; /* Adjust the top margin as needed */
+    margin: auto;
+    
+  }
+  
+  .pagination-container .pagination {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .pagination-container .page-item {
+    display: inline-flex;
+    margin: 3px; /* Adjust the spacing between each page number box */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  
+  }
+  
+  .pagination-container .page-link {
+    text-decoration: none;
+    color: #333;
+    padding: 2px 15px;
+    border: 1px solid #ccc;
+    border-radius: 15%;
+    background-color: #fff; /* Set the background color to white */
+    cursor: pointer;
+  }
+  
+  .pagination-container .active .page-link {
+    background-color: #1f576f;
+    color: #fff;
+  }
+  
+  /* Styles for previous and next buttons */
+  .pagination-container .previous,
+  .pagination-container .next {
+    margin: 5px; /* Adjust the spacing between previous and next buttons */
+  }
+  
+  .pagination-container .previous .page-link,
+  .pagination-container .next .page-link {
+  
+    background-color: #fff; /* Set the background color to white */
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  
+  .pagination-container .previous .page-link:hover,
+  .pagination-container .next .page-link:hover {
+    background-color: #1f576f;
+    color: #fff;
+  }
+  
+  .pagination-container .disabled .page-link {
+    color: #ccc;
+    cursor: not-allowed;
+  }
+  
