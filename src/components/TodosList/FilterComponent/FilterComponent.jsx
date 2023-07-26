@@ -8,6 +8,12 @@ const FilterComponent = ({ onFilter }) => {
 	const [dueDateFilter, setDueDateFilter] = useState("");
 	const [isActiveFilter, setIsActiveFilter] = useState("");
 	const [titleFilter, setTitleFilter] = useState("");
+	const initialFilters = {
+		status: "",
+		dueDate: "",
+		isActive: "",
+		title: "",
+	};
 
 	const handleFilterClick = () => {
 		console.log(dueDateFilter);
@@ -28,63 +34,85 @@ const FilterComponent = ({ onFilter }) => {
 		console.log(filters);
 		onFilter(filters);
 	};
+	const handleResetClick = () => {
+		setStatusFilter(initialFilters.status);
+		setDueDateFilter(initialFilters.dueDate);
+		setIsActiveFilter(initialFilters.isActive);
+		setTitleFilter(initialFilters.title);
+		onFilter(initialFilters); // Optionally, you can trigger the filter with the initial state to reset the filtered data.
+	};
 
 	return (
-		<div className='filter-component'>
-			<div className='filter-item'>
-				<label>Status</label>
-				<select
-					value={statusFilter}
-					onChange={(e) => setStatusFilter(e.target.value)}
-				>
-					{/* <option value='All'>All</option> */}
-					<option value=''>Select Status</option>
-					<option value='ongoing'>Ongoing</option>
-					<option value='todo'>Todo</option>
-					<option value='completed'>Completed</option>
-				</select>
+		<>
+			<div className='filter-component'>
+				<div className='filter-container'>
+					<div className='filter-item'>
+						<label>Status</label>
+						<select
+							value={statusFilter}
+							onChange={(e) => setStatusFilter(e.target.value)}
+						>
+							{/* <option value='All'>All</option> */}
+							<option value=''>Select Status</option>
+							<option value='ongoing'>Ongoing</option>
+							<option value='todo'>Todo</option>
+							<option value='completed'>Completed</option>
+						</select>
+					</div>
+					<div className='filter-item'>
+						<label>Is Active</label>
+						<select
+							value={isActiveFilter}
+							onChange={(e) => setIsActiveFilter(e.target.value)}
+						>
+							<option value=''>Select active</option>
+							<option value='true'>True</option>
+							<option value='false'>False</option>
+						</select>
+					</div>
+					<div className='filter-item'>
+						<label>Title</label>
+						<input
+							type='text'
+							value={titleFilter}
+							onChange={(e) => setTitleFilter(e.target.value)}
+							placeholder='Enter title'
+						/>
+					</div>
+					<div className='filter-item'>
+						<label>Due Date</label>
+						<input
+							type='date'
+							value={dueDateFilter}
+							onChange={(e) => setDueDateFilter(e.target.value)}
+						/>
+					</div>
+				</div>
+				<div className='filter-item-button-container'>
+					<div className='filter-item'>
+						<Button
+							variant='secondary'
+							style={{ backgroundColor: "#1f576f", borderColor: "#1f576f" }}
+							onClick={handleFilterClick}
+						>
+							<BsFilter className='me-1' />
+							Filter Data
+						</Button>
+						{/* <button onClick={handleFilterClick}>Filter Data</button> */}
+					</div>
+					<div className='filter-item'>
+						<Button
+							variant='danger'
+							style={{ backgroundColor: "#1f576f", borderColor: "#1f576f" }}
+							onClick={handleResetClick}
+						>
+							<BsFilter className='me-1' />
+							Reset Filters
+						</Button>
+					</div>
+				</div>
 			</div>
-			<div className='filter-item'>
-				<label>Is Active</label>
-				<select
-					value={isActiveFilter}
-					onChange={(e) => setIsActiveFilter(e.target.value)}
-				>
-					<option value=''>Select active</option>
-					<option value='true'>True</option>
-					<option value='false'>False</option>
-				</select>
-			</div>
-			<div className='filter-item'>
-				<label>Title</label>
-				<input
-					type='text'
-					value={titleFilter}
-					onChange={(e) => setTitleFilter(e.target.value)}
-					placeholder='Enter title'
-				/>
-			</div>
-			<div className='filter-item'>
-				<label>Due Date</label>
-				<input
-					type='date'
-					value={dueDateFilter}
-					onChange={(e) => setDueDateFilter(e.target.value)}
-				/>
-			</div>
-			{/* Add other filter options (title, dueDate) as needed */}
-			<div className='filter-item'>
-				<Button
-					variant='secondary'
-					style={{ backgroundColor: "#1f576f", borderColor: "#1f576f" }}
-					onClick={handleFilterClick}
-				>
-					<BsFilter className='me-1' />
-					Filter Data
-				</Button>
-				{/* <button onClick={handleFilterClick}>Filter Data</button> */}
-			</div>
-		</div>
+		</>
 	);
 };
 

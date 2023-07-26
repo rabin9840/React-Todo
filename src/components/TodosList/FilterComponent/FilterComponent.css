@@ -69,17 +69,30 @@
   border-radius: 8px;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
   margin: 15px 0;
+  /* display: flex;
+  flex-wrap: wrap;  */
+  gap: 20px; 
+  flex-direction: row;
+}
+
+.filter-container {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  margin: 15px 0;
   display: flex;
   flex-wrap: wrap; /* Wrap items to next row */
   gap: 20px; /* Add space between filter items */
+  flex-direction: row;
 }
-
 /* Filter Item Container */
 .filter-item {
   flex: 1; /* Take half of the container width (two items per row) */
   display: flex;
   flex-direction: column; /* Align label on top, input/select below */
 }
+
 
 /* Filter Item Label */
 .filter-item label {
@@ -106,10 +119,13 @@
   font-size: 14px;
   border: none;
   border-radius: 4px;
-  color: #fff;
+  color: rgb(252, 252, 252);
   background-color: #1f576f;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
+  flex-direction: row;
+  margin-right: 12px;
+
 }
 
 /* Filter Item Button Icon */
@@ -120,4 +136,9 @@
 /* Filter Item Button Hover Effect */
 .filter-item button:hover {
   background-color: #1c4965;
+}
+
+.filter-item-button-container{
+  display: flex;
+  justify-content: space-between;
 }

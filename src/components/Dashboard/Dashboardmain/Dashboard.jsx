@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 // import TopCard from "./TopCard";
 import "./Dashboard.css";
 import RecentTodos from "../RecentTodos";
+import HashLoader from "react-spinners/HashLoader";
 
 import { useEffect, useState } from "react";
 const Dashboard = () => {
@@ -18,6 +19,7 @@ const Dashboard = () => {
 	const [ongoingStatusCount, setOngoingStatusCount] = useState();
 	const [completedStatusCount, setCompletedStatusCount] = useState();
 	const [todoStatusCount, setTodoStatusCount] = useState();
+	const [loading, setLoading] = useState(true);
 
 	// const [bardiagramStatusData, setBardiagramStatusData] = useState([]);
 
@@ -32,6 +34,7 @@ const Dashboard = () => {
 	console.log(todosData);
 
 	useEffect(() => {
+		console.log(loading);
 		const getTodosStatusData = async () => {
 			try {
 				const response = await axios.get(
@@ -60,8 +63,14 @@ const Dashboard = () => {
 						todosStatusData[1].count +
 						todosStatusData[2].count
 				);
+
+				// setLoading(false);
+				setTimeout(() => {
+					setLoading(false);
+				}, 1000);
 			} catch (error) {
 				console.log(error);
+				setLoading(false);
 			}
 		};
 
@@ -165,41 +174,53 @@ const Dashboard = () => {
 	// };
 
 	// console.log(barChartData);
-
-	return (
-		<div className='dashboard-container'>
-			<h1>Dashboard</h1>
-			<div className='top-card-container'>
-				<div className='count-container'>
-					<CountCard
-						className='count-card'
-						statusData={{ status: "Total", count: totalTodosCount }}
-					></CountCard>
-					<CountCard
-						className='count-card'
-						statusData={{ status: "Ongoing", count: ongoingStatusCount }}
-					></CountCard>
-					<CountCard
-						className='count-card'
-						statusData={{ status: "Todo", count: todoStatusCount }}
-					></CountCard>
-					<CountCard
-						className='count-card'
-						statusData={{ status: "Completed", count: completedStatusCount }}
-					></CountCard>
+	if (loading) {
+		return (
+			<div className='loader-container'>
+				<HashLoader
+					color='#36d7b7'
+					size={100}
+					speedMultiplier={3}
+				/>
+				;
+			</div>
+		);
+	} else {
+		return (
+			<div className='dashboard-container'>
+				<h1>Dashboard</h1>
+				<div className='top-card-container'>
+					<div className='count-container'>
+						<CountCard
+							className='count-card'
+							statusData={{ status: "Total", count: totalTodosCount }}
+						></CountCard>
+						<CountCard
+							className='count-card'
+							statusData={{ status: "Ongoing", count: ongoingStatusCount }}
+						></CountCard>
+						<CountCard
+							className='count-card'
+							statusData={{ status: "Todo", count: todoStatusCount }}
+						></CountCard>
+						<CountCard
+							className='count-card'
+							statusData={{ status: "Completed", count: completedStatusCount }}
+						></CountCard>
+					</div>
 				</div>
+				<div className='piechart-container'>
+					<Piechart data={pieChartData} />
+				</div>
+				<div className='bardiagram-container'>
+					<BarChart></BarChart>
+					{/* <BarChart todosCountByMonth={bardiagramStatusData}></BarChart> */}
+				</div>
+				<FirstTenTodos />
+				<RecentTodos />
 			</div>
-			<div className='piechart-container'>
-				<Piechart data={pieChartData} />
-			</div>
-			<div className='bardiagram-container'>
-				<BarChart></BarChart>
-				{/* <BarChart todosCountByMonth={bardiagramStatusData}></BarChart> */}
-			</div>
-			<FirstTenTodos />
-			<RecentTodos />
-		</div>
-	);
+		);
+	}
 };
 
 export default Dashboard;
