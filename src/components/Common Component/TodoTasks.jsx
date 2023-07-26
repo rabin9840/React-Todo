@@ -4,9 +4,12 @@ import { Form, Button, Dropdown } from "react-bootstrap";
 import { useFormik } from "formik";
 import todoSchema from "../../validation/todoSchema";
 import { resetCreateTodoPerformed } from "../../actions/todos/resetCreateTodoPerformed";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import "react-toastify/dist/ReactToastify.css";
 const TodoTasks = ({ closeCreateModal }) => {
 	const dispatch = useDispatch();
-
 	const initialTodoState = {
 		title: "",
 		description: "",
@@ -15,18 +18,46 @@ const TodoTasks = ({ closeCreateModal }) => {
 		status: "todo",
 	};
 
+	// const formik = useFormik({
+	// 	initialValues: initialTodoState,
+	// 	validationSchema: todoSchema,
+	// 	onSubmit: async (values, { resetForm }) => {
+	// 		console.log(values);
+	// 		const response = await dispatch(addTodo(values));
+	// 		console.log("response" + response);
+	// 		dispatch(resetCreateTodoPerformed());
+	// 		resetForm();
+	// 	},
+	// });
 	const formik = useFormik({
 		initialValues: initialTodoState,
 		validationSchema: todoSchema,
-		onSubmit: (values, { resetForm }) => {
-			console.log(values);
-			dispatch(addTodo(values));
+		onSubmit: async (values, { resetForm }) => {
+			try {
+				console.log(values);
+				const task_response = await dispatch(addTodo(values));
+				console.log(task_response);
+				console.log(task_response.status);
+				if (task_response && task_response.status === 201) {
+					toast.success("Todo added successfully", { autoClose: 3000 });
+					handleCloseModal();
+				}
+			} catch (error) {
+				console.log(error);
+				toast.warning(error.message, { autoClose: 3000 });
+				handleCloseModal();
+
+				// setIsTodoCreated(false);
+				// Optionally, you can show an error message to the user
+			}
+
 			dispatch(resetCreateTodoPerformed());
 			resetForm();
 		},
 	});
 
 	const handleCloseModal = () => {
+		// console.log(isCreatedTodoPerformed);
 		closeCreateModal();
 	};
 
@@ -178,6 +209,19 @@ const TodoTasks = ({ closeCreateModal }) => {
 					</Button>
 				</div>
 			</Form>
+			{/* {true && (
+				<ToastContainer
+					position='top-right'
+					autoClose={3000}
+					hideProgressBar
+					newestOnTop={false}
+					closeOnClick
+					rtl={false}
+					pauseOnFocusLoss
+					draggable
+					pauseOnHover
+				/>
+			)} */}
 		</div>
 	);
 };
