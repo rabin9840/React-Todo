@@ -1,15 +1,18 @@
 .count-container {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 50px 0;
-  
-  }
+	display: flex;
+	flex-wrap: wrap;
+	margin: 50px 0;
+}
 
-  .todo-card-count{
-    width: 200px;
-    margin:0 30px;
-    background-color: aliceblue;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  }
-  
-  
+.todo-card-count {
+	width: 200px;
+	margin: 0 30px;
+	background-color: aliceblue;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.loader-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh; /* This will make the container take the full height of the viewport */
+}
