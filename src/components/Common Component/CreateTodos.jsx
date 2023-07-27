@@ -3,8 +3,6 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
 import CreateModal from "./Modals/CreateModal";
 import "./CreateTodos.css"; // Import the custom CSS file
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const CreateTodos = () => {
 	const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -43,18 +41,6 @@ const CreateTodos = () => {
 			<CreateModal
 				closeCreateModal={closeCreateModal}
 				isCreateModalOpen={isCreateModalOpen}
-			/>
-
-			<ToastContainer
-				position='top-right'
-				autoClose={3000}
-				hideProgressBar
-				newestOnTop={false}
-				closeOnClick
-				rtl={false}
-				pauseOnFocusLoss
-				draggable
-				pauseOnHover
 			/>
 		</>
 	);

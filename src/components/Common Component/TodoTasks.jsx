@@ -7,7 +7,6 @@ import { resetCreateTodoPerformed } from "../../actions/todos/resetCreateTodoPer
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import "react-toastify/dist/ReactToastify.css";
 const TodoTasks = ({ closeCreateModal }) => {
 	const dispatch = useDispatch();
 	const initialTodoState = {
@@ -44,7 +43,9 @@ const TodoTasks = ({ closeCreateModal }) => {
 				}
 			} catch (error) {
 				console.log(error);
-				toast.warning(error.message, { autoClose: 3000 });
+				console.log(error.errors[0].msg);
+				// toast.warning(error.message, { autoClose: 3000 });
+				toast.warning(error.errors[0].msg, { autoClose: 3000 });
 				handleCloseModal();
 
 				// setIsTodoCreated(false);
