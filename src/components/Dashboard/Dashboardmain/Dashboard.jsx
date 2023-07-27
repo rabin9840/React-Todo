@@ -64,10 +64,10 @@ const Dashboard = () => {
 						todosStatusData[2].count
 				);
 
-				// setLoading(false);
-				setTimeout(() => {
-					setLoading(false);
-				}, 1000);
+				setLoading(false);
+				// setTimeout(() => {
+				// 	setLoading(false);
+				// }, 1000);
 			} catch (error) {
 				console.log(error);
 				setLoading(false);

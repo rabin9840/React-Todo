@@ -247,9 +247,10 @@ const TodoItems = () => {
 	}, [currentPage, todosPerPage, filter, fetchTodosCallback]);
 
 	useEffect(() => {
-		setTimeout(() => {
-			setLoading(false);
-		}, 1000);
+		// setTimeout(() => {
+		// 	setLoading(false);
+		// }, 1000);
+		setLoading(false);
 	}, [todos]);
 
 	const handlePageClick = (e) => {
