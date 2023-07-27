@@ -123,7 +123,7 @@
 // 		dispatch(updateTodo(editTodoId, updatedTodo, username, password));
 // 	};
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import DeleteModal from "../Common Component/Modals/DeleteModal";
 import EditModal from "../Common Component/Modals/EditModal";
 import { Tooltip } from "react-bootstrap";
@@ -223,13 +223,34 @@ const TodoItems = () => {
 	// 		fetchTodos(username, password, currentPage, todosPerPage, statusFilter)
 	// 	);
 	// }, [currentPage, todosPerPage, statusFilter, dispatch]);
+
+	// useEffect(() => {
+	// 	console.log(currentPage);
+	// 	dispatch(fetchTodos(username, password, currentPage, todosPerPage, filter));
+	// 	setTimeout(() => {
+	// 		setLoading(false);
+	// 	}, 1000);
+	// }, [currentPage, todosPerPage, filter, dispatch, todos]);
+	const fetchTodosCallback = useCallback(
+		(currentPage, todosPerPage, filters) => {
+			dispatch(
+				fetchTodos(username, password, currentPage, todosPerPage, filters)
+			);
+		},
+		[dispatch, username, password]
+	);
+
 	useEffect(() => {
 		console.log(currentPage);
-		dispatch(fetchTodos(username, password, currentPage, todosPerPage, filter));
+		setLoading(true); // Set loading to true when starting a new fetch
+		fetchTodosCallback(currentPage, todosPerPage, filter);
+	}, [currentPage, todosPerPage, filter, fetchTodosCallback]);
+
+	useEffect(() => {
 		setTimeout(() => {
 			setLoading(false);
 		}, 1000);
-	}, [currentPage, todosPerPage, filter, dispatch, todos]);
+	}, [todos]);
 
 	const handlePageClick = (e) => {
 		const selectedPage = e.selected + 1;
@@ -249,14 +270,43 @@ const TodoItems = () => {
 	};
 
 	const handleEdit = async (updatedTodo) => {
-		const update_response = await dispatch(
-			updateTodo(editTodoId, updatedTodo, username, password)
-		);
-		if (update_response.status === 200) {
-			toast.success("Todo deleted successfully", { autoClose: 3000 });
-			closeEditModal();
-		} else {
-			toast.warning(update_response.message, { autoClose: 3000 });
+		// try {
+		// 	const update_response = await dispatch(
+		// 		updateTodo(editTodoId, updatedTodo, username, password)
+		// 	);
+		// 	console.log(update_response);
+		// 	console.log(update_response.status);
+		// 	if (update_response.status === 200) {
+		// 		toast.success("Todo edited successfully", { autoClose: 3000 });
+		// 		closeEditModal();
+		// 	}
+		// } catch (error) {
+		// 	console.log(error);
+		// 	console.log(error.errors[0].msg);
+		// 	// toast.warning(error.message, { autoClose: 3000 });
+		// 	toast.warning(error.errors[0].msg, { autoClose: 3000 });
+		// 	closeEditModal();
+		// }
+		try {
+			const update_response = await dispatch(
+				updateTodo(editTodoId, updatedTodo, username, password)
+			);
+			console.log(update_response);
+			console.log(update_response.status);
+			if (update_response && update_response.status === 200) {
+				toast.success("Todo edited successfully", { autoClose: 3000 });
+
+				// closeEditModal();
+			}
+		} catch (error) {
+			console.log(error);
+			console.log(error.errors[0].msg);
+			// toast.warning(error.message, { autoClose: 3000 });
+			toast.warning(error.errors[0].msg, { autoClose: 3000 });
+			// closeEditModal();
+
+			// setIsTodoCreated(false);
+			// Optionally, you can show an error message to the user
 		}
 	};
 

@@ -8,8 +8,8 @@ const EditModal = ({
 	handleEdit,
 	initialTodo,
 }) => {
-	// const [todo, setTodo] = useState(initialTodo);
-	const [todo, setTodo] = useState(() => initialTodo);
+	const [todo, setTodo] = useState(initialTodo);
+	// const [todo, setTodo] = useState(() => initialTodo);
 
 	const handleInputChange = (e) => {
 		const { name, value } = e.target;
@@ -20,6 +20,7 @@ const EditModal = ({
 		e.preventDefault();
 		console.log(todo);
 		handleEdit(todo);
+		setTodo(initialTodo);
 		closeEditModal();
 	};
 

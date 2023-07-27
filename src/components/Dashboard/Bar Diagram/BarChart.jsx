@@ -25,6 +25,7 @@ const BarChart = () => {
 			);
 
 			const todosCountByMonth = response.data.data;
+			console.log(todosCountByMonth);
 			setBardiagramStatusData(todosCountByMonth);
 		} catch (error) {
 			console.log(error);
