@@ -3,6 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import TodoListPage from "./pages/TodoListPage";
 import DashboardPage from "./pages/DashboardPage";
 import { Nav, Navbar, Container } from "react-bootstrap";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
 	return (
@@ -36,6 +38,17 @@ function App() {
 					/>
 				</Routes>
 			</div>
+			<ToastContainer
+				position='top-right'
+				autoClose={3000}
+				hideProgressBar
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+			/>
 		</div>
 	);
 }

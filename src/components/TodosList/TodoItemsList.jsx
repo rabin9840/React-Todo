@@ -139,6 +139,8 @@ import Button from "react-bootstrap/Button";
 import { BsFilter } from "react-icons/bs";
 import "./TodoItemsList.css";
 import HashLoader from "react-spinners/HashLoader";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const TodoItems = () => {
 	const dispatch = useDispatch();
@@ -227,7 +229,7 @@ const TodoItems = () => {
 		setTimeout(() => {
 			setLoading(false);
 		}, 1000);
-	}, [currentPage, todosPerPage, filter, dispatch]);
+	}, [currentPage, todosPerPage, filter, dispatch, todos]);
 
 	const handlePageClick = (e) => {
 		const selectedPage = e.selected + 1;
@@ -235,13 +237,27 @@ const TodoItems = () => {
 		setLoading(true);
 	};
 
-	const handleDelete = () => {
-		dispatch(deleteTodo(deleteTodoId, username, password));
+	const handleDelete = async () => {
+		const delete_response = await dispatch(
+			deleteTodo(deleteTodoId, username, password)
+		);
+		console.log(delete_response);
+		if (delete_response.status === 200) {
+			toast.success("Todo deleted successfully", { autoClose: 3000 });
+		}
 		closeDeleteModal();
 	};
 
-	const handleEdit = (updatedTodo) => {
-		dispatch(updateTodo(editTodoId, updatedTodo, username, password));
+	const handleEdit = async (updatedTodo) => {
+		const update_response = await dispatch(
+			updateTodo(editTodoId, updatedTodo, username, password)
+		);
+		if (update_response.status === 200) {
+			toast.success("Todo deleted successfully", { autoClose: 3000 });
+			closeEditModal();
+		} else {
+			toast.warning(update_response.message, { autoClose: 3000 });
+		}
 	};
 
 	const renderTooltip = (todo) => (

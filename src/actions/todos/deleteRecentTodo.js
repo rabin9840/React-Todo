@@ -6,7 +6,7 @@ export const deleteRecentTodo = (todoId, username, password) => {
     console.log("deletetodo called");
     return async (dispatch) => {
         try {
-            await axios.delete(`http://localhost:3000/todos/${todoId}`, {
+            const response = await axios.delete(`http://localhost:3000/todos/${todoId}`, {
                 headers: {
                     Authorization: `Basic ${btoa(`${username}:${password}`)}`,
                 },
@@ -16,9 +16,11 @@ export const deleteRecentTodo = (todoId, username, password) => {
                 type: actionTypes.DELETE_TODO,
                 payload: todoId,
             })
+            return response;
         }
         catch (error) {
             console.log(error);
+            throw error;
 
         }
     }

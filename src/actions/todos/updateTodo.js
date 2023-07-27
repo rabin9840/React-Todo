@@ -4,7 +4,7 @@ import { actionTypes } from '../actionTypes';
 
 export const updateTodo = (editTodoId, updatedTodo, username, password) => {
   return (dispatch) => {
-    axios.put(`http://localhost:3000/todos/${editTodoId}`, updatedTodo, {
+    const update_response = axios.put(`http://localhost:3000/todos/${editTodoId}`, updatedTodo, {
       headers: {
         Authorization: `Basic ${btoa(`${username}:${password}`)}`,
       },
@@ -20,10 +20,12 @@ export const updateTodo = (editTodoId, updatedTodo, username, password) => {
         dispatch({
           type: actionTypes.SORT_TODOS,
         })
+        return update_response;
 
       })
       .catch(error => {
         console.log(error);
+        throw error;
       });
 
   }
