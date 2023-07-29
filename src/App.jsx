@@ -60,6 +60,7 @@ import { Route, Routes, Link } from "react-router-dom";
 import TodoListPage from "./pages/TodoListPage";
 import DashboardPage from "./pages/DashboardPage";
 import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
 import { Nav, Navbar, Container } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -104,6 +105,12 @@ function App() {
 							>
 								Register
 							</Link>
+							<Link
+								to='/login'
+								className='nav-link'
+							>
+								Login
+							</Link>
 						</Nav>
 					</Navbar.Collapse>
 				</Container>
@@ -121,6 +128,10 @@ function App() {
 					<Route
 						path='/register'
 						element={<RegisterPage />}
+					/>
+					<Route
+						path='/login'
+						element={<LoginPage />}
 					/>
 				</Routes>
 			</div>
