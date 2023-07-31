@@ -28,7 +28,7 @@ const LoginPage = () => {
 
 			if (login_response && login_response.status === 200) {
 				toast.success("Login successful", { autoClose: 3000 });
-				// history("/todo");
+				history("/todo");
 			}
 		} catch (error) {
 			console.log(error);
