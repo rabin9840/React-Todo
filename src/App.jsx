@@ -64,6 +64,7 @@ import LoginPage from "./pages/LoginPage";
 import { Nav, Navbar, Container } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AuthenticatedComponent from "./components/Authenticated/AuthenticatedComponent";
 
 function App() {
 	return (
@@ -132,6 +133,10 @@ function App() {
 					<Route
 						path='/login'
 						element={<LoginPage />}
+					/>
+					<Route
+						path='/todo'
+						element={<AuthenticatedComponent />}
 					/>
 				</Routes>
 			</div>

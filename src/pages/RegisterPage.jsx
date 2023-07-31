@@ -20,7 +20,7 @@ const RegisterPage = () => {
 			);
 			console.log(response);
 			if (response && response.status === 201) {
-				toast.success("Todo added successfully", { autoClose: 3000 });
+				toast.success("Registration successful", { autoClose: 3000 });
 			}
 		} catch (error) {
 			console.log(error);
