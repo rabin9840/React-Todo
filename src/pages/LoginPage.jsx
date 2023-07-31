@@ -1,11 +1,28 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import loginSchema from "../validation/loginSchema";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
 	const initialLoginState = { email: "", password: "" };
-	const handleSubmit = (values, { setSubmitting }) => {
+	const handleSubmit = async (values, { setSubmitting }) => {
 		// Handle form submission here (e.g., call login API)
-		console.log(values);
+		try {
+			console.log(values);
+			const login_response = await axios.post(
+				"http://localhost:3000/api/login",
+				values
+			);
+			console.log(login_response);
+			if (login_response && login_response === 200) {
+				toast.success("Login successful", { autoClose: 3000 });
+			}
+		} catch (error) {
+			console.log(error);
+			console.log(error.response.data.message);
+			toast.warning(error.response.data.message, { autoClose: 3000 });
+		}
+
 		setSubmitting(false);
 	};
 
