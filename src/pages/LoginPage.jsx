@@ -19,8 +19,8 @@ const LoginPage = () => {
 			};
 			// "http://localhost:3000/api/login",
 			const login_response = await axios.post(
-				// "http://localhost:3000/api/login",
-				"/api/login",
+				"http://localhost:3000/api/login",
+				// "/api/login",
 				values,
 				config
 			);
