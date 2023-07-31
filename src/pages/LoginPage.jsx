@@ -19,8 +19,8 @@ const LoginPage = () => {
 			};
 			// "http://localhost:3000/api/login",
 			const login_response = await axios.post(
-				// "http://localhost:3000/api/login",
-				"/api/login",
+				"http://localhost:3000/api/login",
+				// "/api/login",
 				values,
 				config
 			);
@@ -28,7 +28,7 @@ const LoginPage = () => {
 
 			if (login_response && login_response.status === 200) {
 				toast.success("Login successful", { autoClose: 3000 });
-				// history("/todo");
+				history("/todo");
 			}
 		} catch (error) {
 			console.log(error);
