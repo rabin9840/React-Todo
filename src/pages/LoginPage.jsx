@@ -11,14 +11,24 @@ const LoginPage = () => {
 		// Handle form submission here (e.g., call login API)
 		try {
 			console.log(values);
+			const config = {
+				headers: {
+					"Content-Type": "application/json",
+				},
+				withCredentials: true,
+			};
+			// "http://localhost:3000/api/login",
 			const login_response = await axios.post(
-				"http://localhost:3000/api/login",
-				values
+				// "http://localhost:3000/api/login",
+				"/api/login",
+				values,
+				config
 			);
 			console.log(login_response);
+
 			if (login_response && login_response.status === 200) {
 				toast.success("Login successful", { autoClose: 3000 });
-				history("/todos");
+				// history("/todo");
 			}
 		} catch (error) {
 			console.log(error);
