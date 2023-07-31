@@ -2,11 +2,10 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import loginSchema from "../validation/loginSchema";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
-	const history = useHistory();
-
+	const history = useNavigate();
 	// const initialLoginState = { email: "", password: "" };
 	const handleSubmit = async (values, { setSubmitting }) => {
 		// Handle form submission here (e.g., call login API)
@@ -19,8 +18,8 @@ const LoginPage = () => {
 			console.log(login_response);
 			if (login_response && login_response.status === 200) {
 				toast.success("Login successful", { autoClose: 3000 });
+				history("/todos");
 			}
-			history.push("/todos");
 		} catch (error) {
 			console.log(error);
 			console.log(error.response.data.message);
