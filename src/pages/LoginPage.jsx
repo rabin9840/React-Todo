@@ -3,8 +3,10 @@ import loginSchema from "../validation/loginSchema";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const LoginPage = () => {
+	const dispatch = useDispatch();
 	const history = useNavigate();
 	// const initialLoginState = { email: "", password: "" };
 	const handleSubmit = async (values, { setSubmitting }) => {
@@ -25,9 +27,14 @@ const LoginPage = () => {
 				config
 			);
 			console.log(login_response);
+			console.log(login_response.data.data.username);
 
 			if (login_response && login_response.status === 200) {
 				toast.success("Login successful", { autoClose: 3000 });
+				dispatch({
+					type: "SET_USERNAME",
+					payload: login_response.data.data.username,
+				});
 				history("/todo");
 			}
 		} catch (error) {
