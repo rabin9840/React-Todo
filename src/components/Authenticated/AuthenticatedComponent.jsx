@@ -32,7 +32,7 @@ const AuthenticatedComponent = () => {
 	return (
 		<>
 			<h1>Hello</h1>
-			<h1>User:{username}</h1>
+			{/* <h1>User:{username}</h1> */}
 			<ul>
 				{todos.map((todo, index) => (
 					<li key={index}>{todo}</li>
