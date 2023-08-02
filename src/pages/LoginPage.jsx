@@ -35,6 +35,7 @@ const LoginPage = () => {
 					type: "SET_USERNAME",
 					payload: login_response.data.data.username,
 				});
+				localStorage.setItem("username", login_response.data.data.username);
 				history("/todo");
 			}
 		} catch (error) {
