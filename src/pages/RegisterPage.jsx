@@ -2,6 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import registrationSchema from "../validation/registrationSchema";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const RegisterPage = () => {
 	const initialRegistrationState = {
@@ -85,6 +86,13 @@ const RegisterPage = () => {
 					>
 						Register
 					</button>
+					<h1>If already registered click login below for redirecting</h1>
+					<Link
+						to='/login'
+						className='nav-link'
+					>
+						Login
+					</Link>
 				</Form>
 			)}
 		</Formik>

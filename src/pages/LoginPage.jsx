@@ -36,7 +36,8 @@ const LoginPage = () => {
 					payload: login_response.data.data.username,
 				});
 				localStorage.setItem("username", login_response.data.data.username);
-				history("/todo");
+				// history("/todo");
+				history("/dashboard");
 			}
 		} catch (error) {
 			console.log(error);

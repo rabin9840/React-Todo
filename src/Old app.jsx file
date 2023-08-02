@@ -68,20 +68,66 @@ import AuthenticatedComponent from "./components/Authenticated/AuthenticatedComp
 
 function App() {
 	return (
-		<div>
+		<div className='main-app-container'>
+			<Navbar
+				bg='dark'
+				variant='dark'
+				expand='lg'
+				className='navbar'
+			>
+				<Container className='nav-container'>
+					<Link
+						to='/'
+						className='navbar-brand'
+					>
+						Todos
+					</Link>
+					<Navbar.Toggle aria-controls='navbar-nav' />
+					<Navbar.Collapse id='navbar-nav'>
+						<Nav className='flex-column'>
+							{/* Use the Link component instead of anchor tag */}
+							<Link
+								to='/'
+								className='nav-link'
+							>
+								Dashboard
+							</Link>
+							{/* Use the Link component instead of anchor tag */}
+							<Link
+								to='/todos'
+								className='nav-link'
+							>
+								Todos
+							</Link>
+							<Link
+								to='/register'
+								className='nav-link'
+							>
+								Register
+							</Link>
+							<Link
+								to='/login'
+								className='nav-link'
+							>
+								Login
+							</Link>
+						</Nav>
+					</Navbar.Collapse>
+				</Container>
+			</Navbar>
 			<div className='content'>
 				<Routes>
 					<Route
 						path='/'
-						element={<RegisterPage />}
-					/>
-					<Route
-						path='/dashboard'
 						element={<DashboardPage />}
 					/>
 					<Route
 						path='/todos'
 						element={<TodoListPage />}
+					/>
+					<Route
+						path='/register'
+						element={<RegisterPage />}
 					/>
 					<Route
 						path='/login'
