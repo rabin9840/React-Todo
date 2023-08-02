@@ -1,9 +1,16 @@
 import axios from "axios";
+
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const AuthenticatedComponent = () => {
 	const [todos, setTodos] = useState([]);
+
+	const [username, setUsername] = useState("");
 	// const baseUrl = import.meta.env.VITE_REACT_APP_BASE_URL;
+	const reduxUsername = useSelector((state) => state.username);
+	console.log(reduxUsername.username);
+	console.log(username);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -23,12 +30,19 @@ const AuthenticatedComponent = () => {
 				console.log(error);
 			}
 		};
+		if (reduxUsername.username) {
+			console.log("redux username" + reduxUsername.username);
+			setUsername(reduxUsername.username);
+		} else {
+			setUsername(localStorage.getItem("username"));
+		}
 		fetchData();
 	}, []);
 
 	return (
 		<>
 			<h1>Hello</h1>
+			<h1>User:{username}</h1>
 			<ul>
 				{todos.map((todo, index) => (
 					<li key={index}>{todo}</li>
