@@ -1,8 +1,7 @@
 import axios from "axios";
-
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-
+import CommonLayout from "../Layout/CommonLayout";
 const AuthenticatedComponent = () => {
 	const [todos, setTodos] = useState([]);
 
@@ -41,13 +40,15 @@ const AuthenticatedComponent = () => {
 
 	return (
 		<>
-			<h1>Hello</h1>
-			<h1>User:{username}</h1>
-			<ul>
-				{todos.map((todo, index) => (
-					<li key={index}>{todo}</li>
-				))}
-			</ul>
+			<CommonLayout>
+				<h1>Hello</h1>
+				<h1>User:{username}</h1>
+				<ul>
+					{todos.map((todo, index) => (
+						<li key={index}>{todo}</li>
+					))}
+				</ul>
+			</CommonLayout>
 		</>
 	);
 };

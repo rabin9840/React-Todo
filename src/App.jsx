@@ -69,7 +69,7 @@ import AuthenticatedComponent from "./components/Authenticated/AuthenticatedComp
 function App() {
 	return (
 		<div>
-			<div className='content'>
+			<div>
 				<Routes>
 					<Route
 						path='/'
