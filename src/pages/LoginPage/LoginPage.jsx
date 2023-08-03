@@ -102,7 +102,7 @@
 // export default LoginPage;
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import loginSchema from "../validation/loginSchema";
+import loginSchema from "../../validation/loginSchema";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
