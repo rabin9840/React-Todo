@@ -4,7 +4,7 @@ import LogoutModal from "./Modals/LogoutModal";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import "../../App.css";
 const LogoutButton = () => {
 	const [showModal, setShowModal] = useState(false);
 	const history = useNavigate();
@@ -37,11 +37,20 @@ const LogoutButton = () => {
 		<>
 			<Button
 				onClick={openLogoutModal}
-				className='nav-ink'
+				className='nav-button'
 				style={{
+					// backgroundColor: "transparent",
+					// // border: "none",
+					// alignItems: "left",
+					// alignSelf: "left",
+					// color: "white",
+					// transition: "background-color 0.3s ease",
+
 					backgroundColor: "transparent",
-					border: "none",
-					margin: 0,
+					// border: "none",
+					display: "flex",
+					justifyContent: "flex-start",
+					alignItems: "center",
 					color: "white",
 					transition: "background-color 0.3s ease",
 				}}

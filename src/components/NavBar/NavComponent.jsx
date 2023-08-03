@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Nav, Navbar, Container } from "react-bootstrap";
 import LogoutButton from "../Common Component/LogoutButton";
+import "../../App.css";
 
 const NavComponent = () => {
 	return (
@@ -40,12 +41,7 @@ const NavComponent = () => {
 						>
 							Authenticated Todos
 						</Link>
-						<Link
-							to='/'
-							className='nav-link'
-						>
-							<LogoutButton />
-						</Link>
+						<LogoutButton className='custom-logout-button' />
 					</Nav>
 				</Navbar.Collapse>
 			</Container>
