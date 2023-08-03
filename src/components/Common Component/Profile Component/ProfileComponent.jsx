@@ -1,4 +1,5 @@
 import { RxAvatar } from "react-icons/rx";
+import "./ProfileComponent.css";
 const ProfileComponent = ({ username }) => {
 	return (
 		<>
