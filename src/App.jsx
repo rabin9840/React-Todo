@@ -97,10 +97,10 @@ function App() {
 						element={<ProtectedRoute element={DashboardPage} />}
 					/>
 
-					<Route
+					{/* <Route
 						path='/todos'
 						element={<TodoListPage />}
-					/>
+					/> */}
 					<Route
 						path='/todos'
 						element={<ProtectedRoute element={TodoListPage} />}
