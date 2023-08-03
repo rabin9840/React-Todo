@@ -32,6 +32,7 @@
   .main-app-container {
 	display: flex;
 	height: 100vh;
+	background-color: #2a5c71;
   }
   
   .navbar {
@@ -341,4 +342,5 @@ body {
 	color: #333;
 	margin-bottom: 20px;
   }
+  
   
