@@ -342,5 +342,12 @@ body {
 	color: #333;
 	margin-bottom: 20px;
   }
+
+.custom-rx-avatar {
+	font-size: 50px; /* Set the icon size to 24 pixels */
+  }
   
-  
+.nav-button{
+	align-items: left;
+	background-color: white;
+}
