@@ -30,6 +30,12 @@ export const fetchTodos = (username, password, currentPage, todosPerPage, filter
     console.log(filters);
     return async (dispatch) => {
         try {
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                withCredentials: true,
+            };
             console.log(filters.dueDate);
             const params = {
                 page: currentPage,
@@ -39,11 +45,14 @@ export const fetchTodos = (username, password, currentPage, todosPerPage, filter
                 isActive: filters.isActive,
                 title: filters.title
             };
-            const response = await axios.get("http://localhost:3000/todos", {
-                headers: {
-                    Authorization: `Basic ${btoa(`${username}:${password}`)}`,
-                },
+            // const response = await axios.get("http://localhost:3000/todos", {
+            //     headers: {
+            //         Authorization: `Basic ${btoa(`${username}:${password}`)}`,
+            //     },
 
+            //     params: params,
+            // });
+            const response = await axios.get("http://localhost:3000/todos", config, {
                 params: params,
             });
             // console.log(response.data.data);
