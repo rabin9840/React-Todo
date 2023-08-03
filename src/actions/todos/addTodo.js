@@ -28,7 +28,13 @@ import { actionTypes } from '../actionTypes';
 export const addTodo = (task) => {
     return (dispatch) => {
         return new Promise((resolve, reject) => {
-            axios.post('http://localhost:3000/todos', task)
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                withCredentials: true,
+            };
+            axios.post('http://localhost:3000/todos', task, config)
                 .then(response => {
                     dispatch({
                         type: actionTypes.ADD_TODO,
