@@ -36,8 +36,15 @@ const LogoutButton = () => {
 	return (
 		<>
 			<Button
-				variant='primary'
 				onClick={openLogoutModal}
+				className='nav-ink'
+				style={{
+					backgroundColor: "transparent",
+					border: "none",
+					margin: 0,
+					color: "white",
+					transition: "background-color 0.3s ease",
+				}}
 			>
 				Logout
 			</Button>

@@ -1,7 +1,6 @@
 import TodoItemsList from "../components/TodosList/TodoItemsList";
 import CreateTodos from "../components/Common Component/CreateTodos";
 import CommonLayout from "../components/Layout/CommonLayout";
-import LogoutButton from "../components/Common Component/LogoutButton";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ProfileComponent from "../components/Common Component/Profile Component/ProfileComponent";
@@ -24,9 +23,8 @@ const TodoListPage = () => {
 		<>
 			<CommonLayout>
 				<div className='todo-list-container'>
-					<CreateTodos />
 					<ProfileComponent username={username} />
-					<LogoutButton />
+					<CreateTodos />
 					<TodoItemsList />
 				</div>
 			</CommonLayout>

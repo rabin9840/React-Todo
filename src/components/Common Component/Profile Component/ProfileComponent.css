@@ -3,6 +3,15 @@
     flex-direction: column;
     align-items: flex-end; /* This aligns the items to the right horizontally */
     justify-content: flex-end; /* This aligns the items to the bottom vertically */
-    /* justify-content: flex-start; // Use this if you want it at the top */
+    margin-right: 20%;
+  }
+
+  .username{
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  .custom-rx-avatar{
+    margin-right: 50px;
   }
   

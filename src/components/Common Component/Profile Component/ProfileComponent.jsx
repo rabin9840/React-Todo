@@ -5,7 +5,7 @@ const ProfileComponent = ({ username }) => {
 		<>
 			<div className='profile-container'>
 				<RxAvatar className='custom-rx-avatar' />
-				{username}
+				<div className='username'>{username}</div>
 			</div>
 		</>
 	);
