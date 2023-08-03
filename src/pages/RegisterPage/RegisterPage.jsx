@@ -3,9 +3,11 @@ import registrationSchema from "../../validation/registrationSchema";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./RegisterPage.css";
 
 const RegisterPage = () => {
+	const history = useNavigate();
 	const initialRegistrationState = {
 		username: "",
 		email: "",
@@ -23,6 +25,7 @@ const RegisterPage = () => {
 			console.log(response);
 			if (response && response.status === 201) {
 				toast.success("Registration successful", { autoClose: 3000 });
+				history("/dashboard");
 			}
 		} catch (error) {
 			console.log(error);
