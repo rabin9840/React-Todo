@@ -61,10 +61,11 @@ import TodoListPage from "./pages/TodoListPage";
 import DashboardPage from "./pages/DashboardPage";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
-import { Nav, Navbar, Container } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AuthenticatedComponent from "./components/Authenticated/AuthenticatedComponent";
+import ProtectedRoute from "./components/Route/ProtectedRoute";
+import Dashboard from "./components/Dashboard/Dashboardmain/Dashboard";
 
 function App() {
 	return (
@@ -75,13 +76,34 @@ function App() {
 						path='/'
 						element={<RegisterPage />}
 					/>
-					<Route
+					{/* <Route
 						path='/dashboard'
 						element={<DashboardPage />}
+					/> */}
+					{/* <Route
+						path='/dashboard'
+						Component={ProtectedRoute(DashboardPage)}
+					/> */}
+					{/* <Route
+						path='/dashboard'
+						element={<ProtectedRoute component={DashboardPage} />}
+					/> */}
+					{/* <Route
+						path='/dashboard'
+						element={<ProtectedRoute element={DashboardPage} />}
+					/> */}
+					<Route
+						path='/dashboard'
+						element={<ProtectedRoute element={DashboardPage} />}
 					/>
+
 					<Route
 						path='/todos'
 						element={<TodoListPage />}
+					/>
+					<Route
+						path='/todos'
+						element={<ProtectedRoute element={TodoListPage} />}
 					/>
 					<Route
 						path='/login'
@@ -89,7 +111,7 @@ function App() {
 					/>
 					<Route
 						path='/todo'
-						element={<AuthenticatedComponent />}
+						element={<ProtectedRoute element={AuthenticatedComponent} />}
 					/>
 				</Routes>
 			</div>

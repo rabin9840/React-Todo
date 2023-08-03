@@ -35,7 +35,14 @@ const LoginPage = () => {
 					type: "SET_USERNAME",
 					payload: login_response.data.data.username,
 				});
+				const isUserAuthenticated = true;
 				localStorage.setItem("username", login_response.data.data.username);
+				// localStorage.setItem(
+				// 	"isAuthenticated",
+				// 	JSON.stringify(isUserAuthenticated)
+				// );
+				localStorage.setItem("isAuthenticated", isUserAuthenticated);
+
 				// history("/todo");
 				history("/dashboard");
 			}
