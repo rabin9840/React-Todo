@@ -3,9 +3,11 @@ import { Button } from "react-bootstrap";
 import LogoutModal from "./Modals/LogoutModal";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const LogoutButton = () => {
 	const [showModal, setShowModal] = useState(false);
+	const history = useNavigate();
 
 	const handleLogout = async () => {
 		const logout_response = await axios.get(
@@ -17,6 +19,9 @@ const LogoutButton = () => {
 		console.log(logout_response);
 		if (logout_response.status === 200) {
 			toast.success("Logout Successful", { autoClose: 3000 });
+			localStorage.removeItem("username");
+			localStorage.removeItem("isAuthenticated");
+			history("/login");
 		}
 		closeLogoutModal();
 	};
