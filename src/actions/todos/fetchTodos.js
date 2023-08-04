@@ -52,9 +52,12 @@ export const fetchTodos = (username, password, currentPage, todosPerPage, filter
 
             //     params: params,
             // });
-            const response = await axios.get("http://localhost:3000/todos", config, {
+            console.log(params);
+            const response = await axios.get("http://localhost:3000/todos", {
                 params: params,
+                ...config,
             });
+            console.log(response.data.data);
             // console.log(response.data.data);
             // // const todos = response.data.data;
             // const todos = response.data.data.docs;
