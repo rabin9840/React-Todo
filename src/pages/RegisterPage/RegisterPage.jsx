@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./RegisterPage.css";
+import { useEffect } from "react";
 
 const RegisterPage = () => {
 	const history = useNavigate();
@@ -40,6 +41,13 @@ const RegisterPage = () => {
 
 		setSubmitting(false);
 	};
+
+	useEffect(() => {
+		if (localStorage.getItem("username")) {
+			history("/dashboard");
+		}
+	}, []);
+
 	return (
 		// <Formik
 		// 	initialValues={initialRegistrationState}
