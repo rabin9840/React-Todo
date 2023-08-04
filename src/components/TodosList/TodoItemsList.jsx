@@ -167,6 +167,9 @@ const TodoItems = () => {
 	const [showFilter, setShowFilter] = useState(false);
 	const [loading, setLoading] = useState(true);
 
+	const currentUserId = localStorage.getItem("userId");
+	console.log(currentUserId);
+
 	const toggleFilter = () => {
 		setShowFilter((prevState) => !prevState);
 	};
@@ -445,6 +448,7 @@ const TodoItems = () => {
 						closeEditModal={closeEditModal}
 						handleEdit={handleEdit}
 						initialTodo={editTodo}
+						currentUserId
 					/>
 				</div>
 				{/* Show the loading spinner on top */}
@@ -641,6 +645,7 @@ const TodoItems = () => {
 					closeEditModal={closeEditModal}
 					handleEdit={handleEdit}
 					initialTodo={editTodo}
+					currentUserId={currentUserId}
 				/>
 			</div>
 		);

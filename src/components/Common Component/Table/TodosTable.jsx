@@ -54,6 +54,7 @@ const TodosTable = ({
 						<th>Is Active</th>
 						<th>Status</th>
 						<th>Actions</th>
+						<th>Created By</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -79,6 +80,7 @@ const TodosTable = ({
 							<td>{todo.dueDate.toString()}</td>
 							<td>{todo.isActive.toString()}</td>
 							<td>{todo.status}</td>
+							<td>{todo.createdBy}</td>
 							<td>
 								{/* Edit Icon */}
 								<OverlayTrigger

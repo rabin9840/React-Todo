@@ -21,6 +21,7 @@ const LogoutButton = () => {
 			toast.success("Logout Successful", { autoClose: 3000 });
 			localStorage.removeItem("username");
 			localStorage.removeItem("isAuthenticated");
+			localStorage.removeItem("userId");
 			history("/login");
 		}
 		closeLogoutModal();
