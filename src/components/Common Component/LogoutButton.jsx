@@ -46,13 +46,15 @@ const LogoutButton = () => {
 					// color: "white",
 					// transition: "background-color 0.3s ease",
 
+					// backgroundColor: "RGBA(255,255,255,0.55)",
 					backgroundColor: "transparent",
-					// border: "none",
+					border: "none",
 					display: "flex",
 					justifyContent: "flex-start",
 					alignItems: "center",
-					color: "white",
+					color: "RGBA(255,255,255,0.55)",
 					transition: "background-color 0.3s ease",
+					paddingLeft: "10px",
 				}}
 			>
 				Logout
