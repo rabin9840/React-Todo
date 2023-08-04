@@ -53,8 +53,8 @@ const TodosTable = ({
 						<th>Due Date</th>
 						<th>Is Active</th>
 						<th>Status</th>
-						<th>Actions</th>
 						<th>Created By</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>

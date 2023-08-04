@@ -1,5 +1,6 @@
 const getGreetingMessage = (date) => {
     const hour = date.getHours();
+    console.log(hour);
 
     if (hour >= 5 && hour < 12) {
         return 'Good Morning';
