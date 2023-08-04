@@ -5,6 +5,7 @@ import CommonLayout from "../components/Layout/CommonLayout";
 import { useSelector } from "react-redux";
 import ProfileComponent from "../components/Common Component/Profile Component/ProfileComponent";
 import getUserName from "../utils/getUsername";
+import GreetingComponent from "../components/GreetingComponent";
 
 const TodoListPage = () => {
 	// const [username, setUsername] = useState("");
@@ -27,6 +28,7 @@ const TodoListPage = () => {
 			<CommonLayout>
 				<div className='todo-list-container'>
 					<ProfileComponent username={username} />
+					<GreetingComponent username={username} />
 					<CreateTodos />
 					<TodoItemsList />
 				</div>
