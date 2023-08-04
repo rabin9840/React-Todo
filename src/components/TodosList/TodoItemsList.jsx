@@ -167,6 +167,9 @@ const TodoItems = () => {
 	const [showFilter, setShowFilter] = useState(false);
 	const [loading, setLoading] = useState(true);
 
+	const currentUserId = localStorage.getItem("userId");
+	console.log(currentUserId);
+
 	const toggleFilter = () => {
 		setShowFilter((prevState) => !prevState);
 	};
@@ -260,14 +263,19 @@ const TodoItems = () => {
 	};
 
 	const handleDelete = async () => {
-		const delete_response = await dispatch(
-			deleteTodo(deleteTodoId, username, password)
-		);
-		console.log(delete_response);
-		if (delete_response.status === 200) {
-			toast.success("Todo deleted successfully", { autoClose: 3000 });
+		try {
+			console.log("inside handle delete");
+			const delete_response = await dispatch(deleteTodo(deleteTodoId));
+			console.log(delete_response);
+			if (delete_response.status === 200) {
+				toast.success("Todo deleted successfully", { autoClose: 3000 });
+			}
+			console.log(delete_response.status);
+			closeDeleteModal();
+		} catch (error) {
+			toast.warning(error.response.data.message, { autoClose: 3000 });
+			closeDeleteModal();
 		}
-		closeDeleteModal();
 	};
 
 	const handleEdit = async (updatedTodo) => {
@@ -440,6 +448,7 @@ const TodoItems = () => {
 						closeEditModal={closeEditModal}
 						handleEdit={handleEdit}
 						initialTodo={editTodo}
+						currentUserId
 					/>
 				</div>
 				{/* Show the loading spinner on top */}
@@ -636,6 +645,7 @@ const TodoItems = () => {
 					closeEditModal={closeEditModal}
 					handleEdit={handleEdit}
 					initialTodo={editTodo}
+					currentUserId={currentUserId}
 				/>
 			</div>
 		);

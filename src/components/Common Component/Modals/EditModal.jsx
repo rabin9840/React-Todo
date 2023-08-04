@@ -7,9 +7,13 @@ const EditModal = ({
 	closeEditModal,
 	handleEdit,
 	initialTodo,
+	currentUserId,
 }) => {
+	console.log(currentUserId);
 	const [todo, setTodo] = useState(initialTodo);
+	console.log(initialTodo);
 	// const [todo, setTodo] = useState(() => initialTodo);
+	const isCreatedByCurrentUser = currentUserId === todo.createdBy;
 
 	const handleInputChange = (e) => {
 		const { name, value } = e.target;
@@ -101,6 +105,7 @@ const EditModal = ({
 							variant='primary'
 							type='submit'
 							className='mr-2'
+							disabled={!isCreatedByCurrentUser}
 						>
 							Save
 						</Button>

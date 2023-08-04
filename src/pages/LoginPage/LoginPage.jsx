@@ -132,6 +132,7 @@ const LoginPage = () => {
 			);
 			console.log(login_response);
 			console.log(login_response.data.data.username);
+			console.log(login_response.data.data._id);
 
 			if (login_response && login_response.status === 200) {
 				toast.success("Login successful", { autoClose: 3000 });
@@ -146,6 +147,7 @@ const LoginPage = () => {
 				// 	JSON.stringify(isUserAuthenticated)
 				// );
 				localStorage.setItem("isAuthenticated", isUserAuthenticated);
+				localStorage.setItem("userId", login_response.data.data._id);
 
 				// history("/todo");
 				history("/dashboard");
