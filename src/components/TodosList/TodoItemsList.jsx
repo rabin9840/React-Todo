@@ -260,14 +260,19 @@ const TodoItems = () => {
 	};
 
 	const handleDelete = async () => {
-		const delete_response = await dispatch(
-			deleteTodo(deleteTodoId, username, password)
-		);
-		console.log(delete_response);
-		if (delete_response.status === 200) {
-			toast.success("Todo deleted successfully", { autoClose: 3000 });
+		try {
+			console.log("inside handle delete");
+			const delete_response = await dispatch(deleteTodo(deleteTodoId));
+			console.log(delete_response);
+			if (delete_response.status === 200) {
+				toast.success("Todo deleted successfully", { autoClose: 3000 });
+			}
+			console.log(delete_response.status);
+			closeDeleteModal();
+		} catch (error) {
+			toast.warning(error.response.data.message, { autoClose: 3000 });
+			closeDeleteModal();
 		}
-		closeDeleteModal();
 	};
 
 	const handleEdit = async (updatedTodo) => {
