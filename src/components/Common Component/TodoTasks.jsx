@@ -199,7 +199,7 @@ const TodoTasks = ({ closeCreateModal }) => {
 						type='submit'
 						style={{ backgroundColor: "#1f576f", borderColor: "#1f576f" }}
 					>
-						Add Todo
+						Add Task
 					</Button>
 					<Button
 						className='task-action-button'

@@ -353,7 +353,7 @@ const TodoItems = () => {
 					className='todo-items'
 					style={{ opacity: "0.5" }}
 				>
-					<h1>Todos</h1>
+					{/* <h1>Todos</h1> */}
 					{/* Show the filter button with the filter icon */}
 					<div className='d-flex justify-content-end'>
 						<Button
@@ -471,7 +471,7 @@ const TodoItems = () => {
 	} else {
 		return (
 			<div className='todo-items'>
-				<h1>Todos</h1>
+				{/* <h1>Todos</h1> */}
 				{/* Show the filter button with the filter icon */}
 				<div className='d-flex justify-content-end'>
 					<Button

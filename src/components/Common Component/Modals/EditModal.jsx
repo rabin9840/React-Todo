@@ -35,7 +35,7 @@ const EditModal = ({
 			centered
 		>
 			<Modal.Header closeButton>
-				<Modal.Title>Edit Todo</Modal.Title>
+				<Modal.Title>Edit Task</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
 				<Form onSubmit={handleSubmit}>

@@ -102,7 +102,7 @@ const FirstTenTodos = () => {
 
 	return (
 		<div className='todo-items'>
-			<h1>Your todos</h1>
+			<h1>Your tasks</h1>
 
 			{/* <Table
 				responsive
