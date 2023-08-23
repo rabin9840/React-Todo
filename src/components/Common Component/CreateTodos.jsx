@@ -27,7 +27,7 @@ const CreateTodos = () => {
 						md={6}
 					>
 						<div className='app-container'>
-							<h1 className='app-heading'>Todos</h1>
+							<h1 className='app-heading'>Tasks</h1>
 							<Button
 								className='add-button'
 								onClick={openCreateModal}

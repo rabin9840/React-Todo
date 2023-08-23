@@ -97,7 +97,8 @@ const RecentTodos = () => {
 	);
 	return (
 		<div className='todo-items'>
-			<h1>Your Recent todos</h1>
+			<h1>Recent Tasks</h1>
+			{/* <h1>Your Recent todos</h1> */}
 			{/* <Table
 				responsive
 				hover

@@ -13,7 +13,7 @@ const DeleteModal = ({ isModalOpen, handleDelete, closeDeleteModal }) => {
 			</Modal.Header>
 			<Modal.Body>
 				<h2>Confirm Delete</h2>
-				<p>Are you sure you want to delete this todo?</p>
+				<p>Are you sure you want to delete this task?</p>
 			</Modal.Body>
 			<Modal.Footer>
 				<Button
